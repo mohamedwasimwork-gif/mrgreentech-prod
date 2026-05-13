@@ -1,0 +1,36 @@
+# Render Blueprint — describes the FastAPI service so a single
+# "Deploy to Render" action provisions everything reproducibly.
+# Cloudflare Pages handles the frontend separately.
+#
+# After importing this blueprint:
+#   1. Set DATABASE_URL in the Render dashboard (Neon connection string).
+#   2. Set SEED_ADMIN_EMAIL / SEED_ADMIN_PASSWORD before the first deploy.
+#   3. Render auto-generates SECRET_KEY.
+
+services:
+  - type: web
+    name: mrgreentech-api
+    env: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    plan: free
+    region: singapore
+    healthCheckPath: /api/health
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ACCESS_TOKEN_HOURS
+        value: '12'
+      - key: DATABASE_URL
+        sync: false              # set in dashboard; never committed
+      - key: CORS_ORIGINS
+        value: https://mrgreentech.in,https://www.mrgreentech.in
+      - key: SEED_ADMIN_EMAIL
+        sync: false              # set in dashboard
+      - key: SEED_ADMIN_PASSWORD
+        sync: false              # set in dashboard
+      - key: SEED_ADMIN_NAME
+        value: Admin
+      - key: PYTHON_VERSION
+        value: 3.11.9

@@ -1,0 +1,579 @@
+:root {
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --display-weight: 500;
+  --display-tracking: -0.02em;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-body);
+  color: var(--c-ink);
+  background: var(--c-bg);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+em { font-family: var(--font-display); }
+button { font-family: inherit; }
+input, select, textarea { font-family: var(--font-body); }
+input:focus, select:focus, textarea:focus { border-color: var(--c-ink) !important; }
+::selection { background: var(--c-accent); color: var(--c-accentInk); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--c-line); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: var(--c-muted); }
+
+img, svg { max-width: 100%; height: auto; }
+
+/* =====================================================================
+   LAYOUT CLASSES
+   These classes are applied directly to elements so we don't rely on
+   fragile inline-style attribute matching.
+   ===================================================================== */
+
+.mrg-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 32px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* TopNav rows */
+.mrg-utility-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.mrg-utility-meta {
+  display: flex;
+  gap: 20px;
+  opacity: 0.75;
+}
+
+.mrg-topnav-row {
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.mrg-nav-desktop {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.mrg-nav-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.mrg-nav-burger {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--c-line);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 2px;
+  color: var(--c-ink);
+  align-items: center;
+  justify-content: center;
+}
+
+.mrg-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: flex-end;
+}
+.mrg-mobile-drawer {
+  width: min(360px, 92vw);
+  height: 100dvh;
+  background: var(--c-surface);
+  border-left: 1px solid var(--c-line);
+  overflow-y: auto;
+  animation: mrg-drawer-in 0.22s ease-out;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Footer */
+.mrg-footer-wrap { padding: 72px 32px 28px; box-sizing: border-box; }
+.mrg-footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+.mrg-footer-bottom {
+  padding-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.05em;
+}
+
+/* Drawer keyframes */
+@keyframes mrg-drawer-in {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.mrg-hide-mobile { display: inline; }
+
+/* =====================================================================
+   GENERIC RESPONSIVE INLINE-STYLE HOOKS
+   React renders inline styles in kebab-case; these selectors match the
+   actual DOM attribute strings (no spaces after colons).
+   ===================================================================== */
+
+@media (max-width: 960px) {
+  /* Container padding */
+  .mrg-container { padding-left: 24px; padding-right: 24px; }
+  .mrg-footer-wrap { padding-left: 24px; padding-right: 24px; }
+  [style*="padding:0 32px"] { padding-left: 24px !important; padding-right: 24px !important; }
+  [style*="padding:16px 32px"] { padding-left: 24px !important; padding-right: 24px !important; }
+  [style*="padding:18px 32px"] { padding-left: 24px !important; padding-right: 24px !important; }
+  [style*="padding:24px 32px"] { padding-left: 24px !important; padding-right: 24px !important; }
+  [style*="padding:20px 32px"] { padding-left: 24px !important; padding-right: 24px !important; }
+
+  /* Hide desktop nav, show burger */
+  .mrg-nav-desktop { display: none; }
+  .mrg-nav-actions { display: none; }
+  .mrg-nav-burger  { display: inline-flex; }
+
+  /* Stack two-column grids */
+  [style*="grid-template-columns:1.35fr 1fr"],
+  [style*="grid-template-columns:1.4fr 1fr"],
+  [style*="grid-template-columns:1fr 1.3fr"],
+  [style*="grid-template-columns:1fr 1.4fr"],
+  [style*="grid-template-columns:1fr 1.5fr"],
+  [style*="grid-template-columns:1fr 1.6fr"],
+  [style*="grid-template-columns:1fr 2fr"],
+  [style*="grid-template-columns:1.2fr 1fr"],
+  [style*="grid-template-columns:1fr 1.1fr"],
+  [style*="grid-template-columns:1.3fr 1fr"],
+  [style*="grid-template-columns:320px 1fr"],
+  [style*="grid-template-columns:260px 1fr"],
+  [style*="grid-template-columns:240px 1fr auto"],
+  [style*="grid-template-columns:180px 1fr"],
+  [style*="grid-template-columns:160px 1fr"],
+  [style*="grid-template-columns:150px 1fr"],
+  [style*="grid-template-columns:220px 1fr"],
+  [style*="grid-template-columns:56px 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+
+  /* 3-up / 4-up grids → 2-up */
+  [style*="grid-template-columns:repeat(3, 1fr)"],
+  [style*="grid-template-columns:repeat(4, 1fr)"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+  }
+  /* 5-up / 6-up / 8-up → 3-up */
+  [style*="grid-template-columns:repeat(5, 1fr)"],
+  [style*="grid-template-columns:repeat(6, 1fr)"],
+  [style*="grid-template-columns:repeat(8, 1fr)"] {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 12px !important;
+  }
+
+  /* Corridor / wide table */
+  [style*="grid-template-columns:2fr 1fr 1fr 2fr 0.8fr"] {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+
+  /* Section vertical padding */
+  [style*="padding:120px 0"] { padding-top: 72px !important; padding-bottom: 72px !important; }
+  [style*="padding:96px 0"]  { padding-top: 64px !important; padding-bottom: 64px !important; }
+  [style*="padding:72px 0"]  { padding-top: 56px !important; padding-bottom: 56px !important; }
+  [style*="padding:80px 32px 96px"] { padding: 56px 24px 72px !important; }
+  [style*="padding:80px 32px 64px"] { padding: 56px 24px 48px !important; }
+  [style*="padding:96px 0 80px"]    { padding: 64px 0 56px !important; }
+
+  /* Hero stats overlay → flow inline below image */
+  .mrg-hero-stats-overlay {
+    position: static !important;
+    inset: auto !important;
+    margin-top: 16px !important;
+  }
+
+  /* Footer columns stack to 2 then 1 */
+  .mrg-footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 32px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  body { font-size: 15px; }
+
+  .mrg-container { padding-left: 18px; padding-right: 18px; }
+  .mrg-footer-wrap { padding-left: 18px; padding-right: 18px; padding-top: 48px; padding-bottom: 24px; }
+  [style*="padding:0 32px"] { padding-left: 18px !important; padding-right: 18px !important; }
+  [style*="padding:16px 32px"] { padding-left: 18px !important; padding-right: 18px !important; }
+  [style*="padding:18px 32px"] { padding-left: 18px !important; padding-right: 18px !important; }
+  [style*="padding:24px 32px"] { padding-left: 18px !important; padding-right: 18px !important; }
+  [style*="padding:20px 32px"] { padding-left: 18px !important; padding-right: 18px !important; }
+  [style*="padding:0 20px"]  { padding-left: 14px !important; padding-right: 14px !important; }
+
+  .mrg-hide-mobile { display: none !important; }
+  .mrg-utility-row { font-size: 10px; gap: 12px; }
+
+  .mrg-topnav-row {
+    padding: 14px 18px;
+    gap: 12px;
+  }
+
+  /* Everything stacks single column */
+  [style*="grid-template-columns:repeat(2, 1fr)"],
+  [style*="grid-template-columns:repeat(3, 1fr)"],
+  [style*="grid-template-columns:repeat(4, 1fr)"],
+  [style*="grid-template-columns:repeat(5, 1fr)"],
+  [style*="grid-template-columns:repeat(6, 1fr)"],
+  [style*="grid-template-columns:repeat(8, 1fr)"],
+  [style*="grid-template-columns:1fr 1fr"],
+  [style*="grid-template-columns:1fr 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  /* Wide horizontal-only patterns (forms, side-by-side fields) */
+  [style*="grid-template-columns:1fr 2fr auto"] {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* Footer down to single column */
+  .mrg-footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 36px !important;
+    padding-bottom: 40px !important;
+  }
+  .mrg-footer-bottom { flex-direction: column !important; align-items: flex-start !important; }
+
+  /* Tighter section padding */
+  [style*="padding:120px 0"] { padding-top: 56px !important; padding-bottom: 56px !important; }
+  [style*="padding:96px 0"]  { padding-top: 48px !important; padding-bottom: 48px !important; }
+  [style*="padding:72px 0"]  { padding-top: 40px !important; padding-bottom: 40px !important; }
+  [style*="padding:64px 0"]  { padding-top: 36px !important; padding-bottom: 36px !important; }
+  [style*="padding:40px 0"]  { padding-top: 24px !important; padding-bottom: 24px !important; }
+  [style*="padding:80px 32px 96px"] { padding: 40px 18px 56px !important; }
+  [style*="padding:80px 32px 64px"] { padding: 40px 18px 40px !important; }
+  [style*="padding:96px 0 80px"]    { padding: 56px 0 40px !important; }
+
+  /* Big gaps squeeze */
+  [style*="gap:96px"] { gap: 36px !important; }
+  [style*="gap:80px"] { gap: 32px !important; }
+  [style*="gap:72px"] { gap: 30px !important; }
+  [style*="gap:64px"] { gap: 28px !important; }
+  [style*="gap:56px"] { gap: 28px !important; }
+  [style*="gap:48px"] { gap: 24px !important; }
+  [style*="gap:40px"] { gap: 22px !important; }
+  [style*="gap:32px"] { gap: 20px !important; }
+
+  /* Section heading max-widths */
+  h1[style*="clamp(48px, 6.5vw, 88px)"],
+  h1[style*="clamp(52px, 7.5vw, 104px)"] {
+    font-size: clamp(36px, 9vw, 56px) !important;
+  }
+  h2[style*="clamp(36px, 4.8vw, 64px)"],
+  h2[style*="clamp(32px, 4.2vw, 56px)"],
+  h2[style*="clamp(40px, 5.5vw, 80px)"] {
+    font-size: clamp(28px, 7vw, 40px) !important;
+  }
+
+  /* Avoid horizontal overflow on Big numbers */
+  div[style*="font-size:64"],
+  div[style*="font-size: 64"] {
+    font-size: 44px !important;
+  }
+  div[style*="font-size:52"],
+  div[style*="font-size: 52"] {
+    font-size: 36px !important;
+  }
+  div[style*="font-size:42"] {
+    font-size: 32px !important;
+  }
+
+  /* Section heads padding inside services list */
+  [style*="padding:64px 56px"] { padding: 40px 18px !important; }
+  [style*="padding:56px 0"]    { padding-top: 32px !important; padding-bottom: 32px !important; }
+  [style*="padding:36px 32px"] { padding: 24px 18px !important; }
+  [style*="padding:14px 24px"] { padding: 10px 14px !important; }
+  [style*="padding:22px 24px"] { padding: 16px 14px !important; }
+
+  /* Service-detail bordered shell — remove decorative side borders that
+     leave dead horizontal space at narrow widths */
+  [style*="border-left:1px solid var(--c-line)"][style*="border-right:1px solid var(--c-line)"] {
+    border-left: none !important;
+    border-right: none !important;
+  }
+
+  /* Quote modal — give it room */
+  [style*="padding:40px"][style*="min-height:400px"] { padding: 24px !important; }
+}
+
+/* =====================================================================
+   Quote modal — full-screen on mobile
+   ===================================================================== */
+@media (max-width: 640px) {
+  /* Modal backdrop */
+  [style*="position:fixed"][style*="inset:0"][style*="z-index:100"] {
+    padding: 0 !important;
+    align-items: stretch !important;
+  }
+  /* Modal panel */
+  [style*="max-width:860px"][style*="max-height:92vh"] {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    height: 100dvh !important;
+    border-radius: 0 !important;
+  }
+}
+
+/* =====================================================================
+   Admin shell on small screens — show a "use desktop" notice
+   ===================================================================== */
+.mrg-admin-mobile-block { display: none; }
+@media (max-width: 900px) {
+  .mrg-admin-mobile-block {
+    display: flex !important;
+    position: fixed;
+    inset: 0;
+    z-index: 95;
+    background: var(--c-bg);
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+  }
+  .mrg-admin-desktop { display: none !important; }
+}
+
+/* Tables / wide content can scroll horizontally if needed */
+.mrg-scroll-x { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+
+/* =====================================================================
+   SERVICES — Process stepper
+   ===================================================================== */
+.mrg-process-track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+}
+.mrg-process-line {
+  position: absolute;
+  top: 64px; /* aligns to node center */
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background-image: linear-gradient(to right, var(--c-line) 50%, transparent 50%);
+  background-size: 8px 1px;
+  background-repeat: repeat-x;
+  z-index: 0;
+}
+.mrg-process-step { position: relative; z-index: 1; }
+.mrg-process-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 16px;
+}
+.mrg-process-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--c-muted);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.mrg-process-node {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  color: var(--c-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+.mrg-process-node::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+.mrg-process-card:hover .mrg-process-node {
+  background: var(--c-brand);
+  border-color: var(--c-brand);
+  color: var(--c-darkInk);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(15, 27, 20, 0.18);
+}
+.mrg-process-card:hover .mrg-process-node::after {
+  border-color: var(--c-brand);
+}
+.mrg-process-title {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-size: 24px;
+  letter-spacing: -0.02em;
+  color: var(--c-ink);
+  margin-top: 24px;
+}
+.mrg-process-desc {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--c-ink2);
+  margin-top: 8px;
+  max-width: 200px;
+}
+
+/* ---- Reusable dark green section backdrop ---- */
+.mrg-dark-green {
+  background: var(--c-ink);
+  position: relative;
+  isolation: isolate;
+  color: var(--c-darkInk);
+}
+.mrg-dark-green::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 80% at 20% 0%, color-mix(in oklab, var(--c-brand) 60%, transparent), transparent 70%),
+    radial-gradient(50% 70% at 100% 100%, color-mix(in oklab, var(--c-brand2) 40%, transparent), transparent 70%);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+.mrg-dark-green > div { position: relative; z-index: 1; }
+
+/* ---- Dark green Process variant ---- */
+.mrg-process-dark .mrg-process-line {
+  background-image: linear-gradient(to right, rgba(201, 226, 101, 0.35) 50%, transparent 50%);
+}
+.mrg-process-dark .mrg-process-num {
+  color: rgba(255, 255, 255, 0.55);
+}
+.mrg-process-dark .mrg-process-node {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: var(--c-accent);
+  backdrop-filter: blur(2px);
+}
+.mrg-process-dark .mrg-process-card:hover .mrg-process-node {
+  background: var(--c-accent);
+  border-color: var(--c-accent);
+  color: var(--c-accentInk);
+  box-shadow: 0 12px 28px rgba(201, 226, 101, 0.25);
+}
+.mrg-process-dark .mrg-process-card:hover .mrg-process-node::after {
+  border-color: rgba(201, 226, 101, 0.4);
+}
+.mrg-process-dark .mrg-process-title {
+  color: var(--c-darkInk);
+}
+.mrg-process-dark .mrg-process-desc {
+  color: rgba(255, 255, 255, 0.7);
+}
+@media (max-width: 900px) {
+  .mrg-process-dark .mrg-process-node {
+    background: rgba(0, 0, 0, 0.35);
+  }
+}
+
+/* Tablet — 5 → vertical stack with left rail */
+@media (max-width: 900px) {
+  .mrg-process-track {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-left: 40px;
+  }
+  .mrg-process-line {
+    top: 0;
+    bottom: 0;
+    left: 24px;
+    right: auto;
+    width: 1px;
+    height: auto;
+    background-image: linear-gradient(to bottom, var(--c-line) 50%, transparent 50%);
+    background-size: 1px 8px;
+    background-repeat: repeat-y;
+  }
+  .mrg-process-card {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    padding: 0;
+    gap: 20px;
+    position: relative;
+  }
+  .mrg-process-num {
+    position: absolute;
+    left: -40px;
+    top: 0;
+    margin: 0;
+    width: 32px;
+    text-align: right;
+  }
+  .mrg-process-node {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    margin-left: -64px;
+    background: var(--c-bg);
+  }
+  .mrg-process-title { margin-top: 4px; font-size: 20px; }
+  .mrg-process-desc { max-width: none; }
+}
+
+@media (max-width: 640px) {
+  .mrg-process-track { padding-left: 28px; }
+  .mrg-process-line { left: 16px; }
+  .mrg-process-num { left: -28px; font-size: 10px; }
+  .mrg-process-node {
+    width: 44px;
+    height: 44px;
+    margin-left: -50px;
+  }
+  .mrg-process-title { font-size: 18px; }
+  .mrg-process-desc { font-size: 13px; }
+}
+
+/* Tweak the brand bottom-overlay attachment so it doesn't bleed outside the viewport */
+@media (max-width: 640px) {
+  [style*="position:absolute"][style*="bottom:-24px"] {
+    left: 0 !important;
+    right: 0 !important;
+  }
+}

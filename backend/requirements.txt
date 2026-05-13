@@ -1,0 +1,11 @@
+fastapi>=0.115
+uvicorn[standard]>=0.30
+sqlalchemy>=2.0
+pydantic>=2.6
+pydantic[email]
+python-jose[cryptography]>=3.3
+bcrypt>=4.1
+python-multipart>=0.0.9
+# Postgres driver — only needed in production when DATABASE_URL points to
+# postgresql://. Locally the project still uses SQLite and ignores this.
+psycopg[binary]>=3.1
