@@ -44,7 +44,7 @@ export default function AdminLoginPage() {
       display: 'flex', flexDirection: 'column',
     }}>
       <header style={{ padding: '24px 32px', display: 'flex', alignItems: 'center', gap: 14 }}>
-        <Logo size={20} variant="dark"/>
+        <Logo size={14} variant="dark"/>
         <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.14em', padding: '4px 10px', background: 'var(--c-accent)', color: 'var(--c-accentInk)', borderRadius: 2 }}>ADMIN</span>
         <a href="/" style={{ marginLeft: 'auto', fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)', textDecoration: 'none', border: '1px solid rgba(255,255,255,0.2)', padding: '8px 14px', borderRadius: 2 }}>← Back to site</a>
       </header>

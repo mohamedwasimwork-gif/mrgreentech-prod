@@ -133,7 +133,7 @@ export function AdminDashboard() {
           height: 64, display: 'flex', alignItems: 'center', padding: '0 32px', justifyContent: 'space-between',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-            <Logo size={20} variant="dark"/>
+            <Logo size={14} variant="dark"/>
             <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.14em', padding: '4px 10px', background: 'var(--c-accent)', color: 'var(--c-accentInk)', borderRadius: 2 }}>ADMIN</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>

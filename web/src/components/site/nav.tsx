@@ -13,10 +13,12 @@ import { COMPANY } from '../data';
  * footer, size=20 in admin shell and admin login.
  */
 export function Logo({ size = 22, variant = 'ink' }: { size?: number; variant?: 'ink' | 'dark' | 'brand' }) {
-  // The image already carries its own colour. We scale height to ~2× the
-  // text-only size so the "M R Greentech" letters inside the image are
-  // legible at nav scale.
-  const renderedHeight = size * 1.9;
+  // The source image at /500x700.png is a 1.4 : 1 rectangle with
+  // generous whitespace around the actual icon + wordmark inside it.
+  // We render at ~3.6× the legacy text-size so the lockup reads cleanly.
+  // size=22 (default in TopNav/footer)  → ~80 px tall
+  // size=20 (admin shell + login page)  → ~72 px tall
+  const renderedHeight = size * 3.6;
   return (
     <div
       style={{ display: 'inline-flex', alignItems: 'center', lineHeight: 0 }}
