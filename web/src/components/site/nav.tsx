@@ -14,11 +14,12 @@ import { COMPANY } from '../data';
  */
 export function Logo({ size = 22, variant = 'ink' }: { size?: number; variant?: 'ink' | 'dark' | 'brand' }) {
   // The source image at /500x700.png is a 1.4 : 1 rectangle with
-  // generous whitespace around the actual icon + wordmark inside it.
-  // We render at ~3.6× the legacy text-size so the lockup reads cleanly.
-  // size=22 (default in TopNav/footer)  → ~80 px tall
-  // size=20 (admin shell + login page)  → ~72 px tall
-  const renderedHeight = size * 3.6;
+  // whitespace around the actual icon + wordmark inside it.
+  // We render at ~2.4× the legacy text-size so the lockup reads
+  // cleanly without inflating the header height.
+  // size=22 (default in TopNav/footer)  → ~53 px tall
+  // size=14 (admin shell + login page)  → ~34 px tall
+  const renderedHeight = size * 2.4;
   return (
     <div
       style={{ display: 'inline-flex', alignItems: 'center', lineHeight: 0 }}

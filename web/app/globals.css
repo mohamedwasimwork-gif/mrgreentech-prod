@@ -60,7 +60,7 @@ img, svg { max-width: 100%; height: auto; }
 }
 
 .mrg-topnav-row {
-  padding: 18px 32px;
+  padding: 10px 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
