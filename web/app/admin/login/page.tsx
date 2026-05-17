@@ -93,11 +93,6 @@ export default function AdminLoginPage() {
           <Btn variant="primary" type="submit" size="lg">
             {busy ? 'Signing in…' : <>Sign in <Ico name="arrow" size={16}/></>}
           </Btn>
-
-          <div style={{ fontSize: 11, color: 'var(--c-muted)', textAlign: 'center', lineHeight: 1.55 }}>
-            Admin only · single credentialed account.<br/>
-            Change <code style={{ fontFamily: 'var(--font-mono)' }}>SEED_ADMIN_*</code> in <code style={{ fontFamily: 'var(--font-mono)' }}>backend/.env</code> before deploying.
-          </div>
         </form>
       </main>
     </div>
