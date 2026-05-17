@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Btn, Chip, DataRow, Ico, Placeholder, SectionHead } from '../ui';
-import { CASES, SERVICES } from '../data';
+import { SERVICES } from '../data';
 import { getField, useField } from '../content_store';
 import BlurInWords from '../motion/BlurInWords';
 import FadeInScale from '../motion/FadeInScale';
@@ -280,10 +280,10 @@ function HomeStats() {
         </div>
         <div style={{ marginTop: 64, display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0, borderTop: '1px solid rgba(255,255,255,0.15)' }}>
           {[
-            { big: '192,400', unit: 'MT handled since 2014', sub: 'Across ferrous and non-ferrous' },
-            { big: '1,318', unit: 'Shipments executed', sub: '40ft HC containers + bulk vessels' },
-            { big: '99.4%', unit: 'On-spec delivery rate', sub: 'Per third-party inspection · 2025' },
-            { big: '11', unit: 'Countries active', sub: '5 Europe · 3 MENA · 3 APAC' },
+            { big: '240,000+', unit: 'MT handled since 1998', sub: 'Hazardous + non-hazardous combined' },
+            { big: '420+', unit: 'Industrial clients', sub: 'Across South India' },
+            { big: '92%', unit: 'Materials diversion rate', sub: 'Recovered back into supply chains' },
+            { big: '14', unit: 'Vehicles in fleet', sub: 'GPS-tracked · hazmat-rated' },
           ].map((s, i) => (
             <ScrollFadeUp key={i} delay={i * 0.06}>
               <div style={{ padding: '40px 32px 40px 0', borderRight: i < 3 ? '1px solid rgba(255,255,255,0.15)' : 'none' }}>
@@ -300,7 +300,7 @@ function HomeStats() {
 }
 
 function HomeLogos() {
-  const partners = ['Rhein-Stahl', 'Nordisk Metal', 'Cobre do Brasil', 'Ennore Port', 'TEUCO Shipping', "Lloyd's Register", 'Bureau Veritas', 'SGS'];
+  const partners = ['CPCB', 'TNPCB', 'AERB', 'MoEFCC EPR', 'ISO 14001', 'Bureau Veritas', 'SGS', 'TNPCB TSDF Network'];
   return (
     <section style={{ padding: '64px 0', borderBottom: '1px solid var(--c-line)' }}>
       <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 32px' }}>
@@ -313,42 +313,6 @@ function HomeLogos() {
               fontFamily: 'var(--font-display)', fontSize: 15, color: 'var(--c-ink2)',
               textAlign: 'center', letterSpacing: '-0.01em',
             }}>{p}</div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function HomeCases({ onNav }: { onNav: (r: string) => void }) {
-  useField('home', '_');
-  return (
-    <section style={{ padding: '120px 0', borderBottom: '1px solid var(--c-line)' }}>
-      <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 32px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 32, marginBottom: 56 }}>
-          <SectionHead eyebrow={getField('home', 'cases_eyebrow')} title={getField('home', 'cases_title')} />
-          {getField('home', 'cases_cta') && <Btn variant="ghost" onClick={() => onNav('cases')}>{getField('home', 'cases_cta')} <Ico name="arrow" size={14}/></Btn>}
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 32 }}>
-          {CASES.slice(0, 2).map((c, i) => (
-            <ScrollFadeUp key={c.id} delay={i * 0.08}>
-              <div onClick={() => onNav('cases')} style={{
-                cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: 20,
-              }}>
-                <HoverImageZoom>
-                  <Placeholder label={`${c.country} · ${c.material}`} ratio="16/10" tone={c.id === 'c01' ? 'brand' : 'muted'}/>
-                </HoverImageZoom>
-                <div>
-                  <div style={{ display: 'flex', gap: 10, marginBottom: 14 }}>
-                    <Chip tone="outline">{c.country}</Chip>
-                    <Chip tone="outline">{c.year}</Chip>
-                    <Chip tone="outline">{c.volume}</Chip>
-                  </div>
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 'var(--display-weight)' as any, fontSize: 28, color: 'var(--c-ink)', margin: 0, letterSpacing: '-0.01em', lineHeight: 1.15, textWrap: 'balance' as any }}>{c.title}</h3>
-                  <p style={{ fontSize: 15, lineHeight: 1.6, color: 'var(--c-ink2)', marginTop: 12, textWrap: 'pretty' as any }}>{c.summary}</p>
-                </div>
-              </div>
-            </ScrollFadeUp>
           ))}
         </div>
       </div>

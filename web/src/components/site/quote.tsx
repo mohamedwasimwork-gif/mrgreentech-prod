@@ -129,12 +129,12 @@ function QuoteStep1({ form, update }: { form: QuoteForm; update: (k: keyof Quote
         </div>
       </Field>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-        <Field label="Material category"><select style={inputStyle} value={form.material} onChange={(e) => update('material', e.target.value)}><option value="">Select —</option><option>Ferrous</option><option>Non-ferrous</option><option>Mixed</option></select></Field>
-        <Field label="Grade"><input style={inputStyle} placeholder="e.g. HMS 1/2 80:20, Birch/Cliff" value={form.grade} onChange={(e) => update('grade', e.target.value)}/></Field>
+        <Field label="Waste category"><select style={inputStyle} value={form.material} onChange={(e) => update('material', e.target.value)}><option value="">Select —</option><option>Hazardous</option><option>Non-hazardous</option><option>E-waste</option><option>Construction & demolition</option><option>Mixed / unsure</option></select></Field>
+        <Field label="Sub-category / description"><input style={inputStyle} placeholder="e.g. used oil, paint sludge, plastic packaging" value={form.grade} onChange={(e) => update('grade', e.target.value)}/></Field>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-        <Field label="Approximate volume (MT)"><input style={inputStyle} type="number" placeholder="e.g. 120" value={form.volume} onChange={(e) => update('volume', e.target.value)}/></Field>
-        <Field label="Frequency"><select style={inputStyle} value={form.frequency} onChange={(e) => update('frequency', e.target.value)}><option>one-time</option><option>monthly</option><option>quarterly</option><option>rolling</option></select></Field>
+        <Field label="Approximate volume (MT/month)"><input style={inputStyle} type="number" placeholder="e.g. 5" value={form.volume} onChange={(e) => update('volume', e.target.value)}/></Field>
+        <Field label="Pickup frequency"><select style={inputStyle} value={form.frequency} onChange={(e) => update('frequency', e.target.value)}><option>one-time</option><option>weekly</option><option>bi-weekly</option><option>monthly</option><option>on-call</option></select></Field>
       </div>
     </div>
   );
@@ -144,12 +144,12 @@ function QuoteStep2({ form, update }: { form: QuoteForm; update: (k: keyof Quote
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-        <Field label="Origin (country / region)"><input style={inputStyle} placeholder="e.g. Aalborg, Denmark" value={form.origin} onChange={(e) => update('origin', e.target.value)}/></Field>
-        <Field label="Destination"><input style={inputStyle} placeholder="e.g. Chennai Port" value={form.destination} onChange={(e) => update('destination', e.target.value)}/></Field>
+        <Field label="Pickup site (city / area)"><input style={inputStyle} placeholder="e.g. Sriperumbudur, Chennai" value={form.origin} onChange={(e) => update('origin', e.target.value)}/></Field>
+        <Field label="Site type"><input style={inputStyle} placeholder="e.g. Pharma plant, IT campus, construction site" value={form.destination} onChange={(e) => update('destination', e.target.value)}/></Field>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-        <Field label="Preferred port"><select style={inputStyle} value={form.port} onChange={(e) => update('port', e.target.value)}><option value="">Select —</option><option>Chennai</option><option>Kamarajar (Ennore)</option><option>Kattupalli</option><option>Mundra</option><option>Other</option></select></Field>
-        <Field label="Incoterm"><select style={inputStyle} value={form.incoterm} onChange={(e) => update('incoterm', e.target.value)}><option>CFR</option><option>CIF</option><option>FOB</option><option>EXW</option><option>DAP</option></select></Field>
+        <Field label="Industrial cluster"><select style={inputStyle} value={form.port} onChange={(e) => update('port', e.target.value)}><option value="">Select —</option><option>Ambattur</option><option>Sriperumbudur</option><option>Maraimalai Nagar</option><option>Chennai Metropolitan</option><option>Outside Tamil Nadu</option><option>Other</option></select></Field>
+        <Field label="Engagement type"><select style={inputStyle} value={form.incoterm} onChange={(e) => update('incoterm', e.target.value)}><option>Annual contract</option><option>Multi-year contract</option><option>One-time pickup</option><option>Advisory / consult only</option></select></Field>
       </div>
       <Field label="Additional notes" hint="Any specifics on material, timeline, payment terms — the more the better.">
         <textarea style={{ ...inputStyle, minHeight: 100, resize: 'vertical' }} value={form.notes} onChange={(e) => update('notes', e.target.value)}/>

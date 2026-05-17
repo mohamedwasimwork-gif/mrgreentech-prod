@@ -62,7 +62,7 @@ export function TopNav({ current, onNav, onOpenQuote, onOpenAdmin }: {
         padding: '7px 0',
       }}>
         <div className="mrg-container mrg-utility-row">
-          <span className="mrg-utility-id">◆ IEC {COMPANY.iec} · GST {COMPANY.gst}</span>
+          <span className="mrg-utility-id">◆ CPCB {COMPANY.cpcb} · GST {COMPANY.gst}</span>
           <span className="mrg-utility-meta">
             <span>{COMPANY.phone}</span>
             <span className="mrg-hide-mobile">{COMPANY.email}</span>
@@ -151,7 +151,7 @@ export function TopNav({ current, onNav, onOpenQuote, onOpenAdmin }: {
             <div style={{ padding: 20, borderTop: '1px solid var(--c-line)', fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--c-muted)', display: 'flex', flexDirection: 'column', gap: 6 }}>
               <a href={`tel:${COMPANY.phone}`} style={{ color: 'var(--c-ink)', textDecoration: 'none' }}>{COMPANY.phone}</a>
               <a href={`mailto:${COMPANY.email}`} style={{ color: 'var(--c-ink2)', textDecoration: 'none' }}>{COMPANY.email}</a>
-              <span>IEC {COMPANY.iec} · GST {COMPANY.gst}</span>
+              <span>CPCB {COMPANY.cpcb} · GST {COMPANY.gst}</span>
             </div>
           </aside>
         </div>
@@ -229,12 +229,12 @@ export function Footer({ onNav, onOpenQuote }: { onNav: (r: string) => void; onO
           <div className="mrg-footer-brand">
             <Logo size={22} variant="dark" />
             <p style={{ fontSize: 14, lineHeight: 1.6, color: 'rgba(255,255,255,0.65)', marginTop: 20, maxWidth: 340 }}>
-              A metal scrap trade house based in Chennai — connecting South Indian industry to the world since {COMPANY.established}.
+              A professional waste management partner based in Chennai — collecting, treating, recovering and safely disposing of industrial waste since {COMPANY.established}.
             </p>
             <div style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 6, fontFamily: 'var(--font-mono)', fontSize: 12, color: 'rgba(255,255,255,0.55)' }}>
-              <span>IEC · {COMPANY.iec}</span>
+              <span>CPCB · {COMPANY.cpcb}</span>
               <span>GST · {COMPANY.gst}</span>
-              <span>REX · IN-REX-4418/2019</span>
+              <span>ISO 14001 · 2018 (renewed)</span>
             </div>
           </div>
           <FooterCol title="Company" items={[

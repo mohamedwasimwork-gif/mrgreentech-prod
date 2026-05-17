@@ -38,15 +38,15 @@ export const IMAGES = {
   /* === ABOUT — founders on yard === */
   aboutFounders: 'https://cleanriver.com/wp-content/uploads/2023/09/jessica-palomo-l7LmUdkrANQ-unsplash-scaled.jpg',
 
-  /* === SERVICES (per service id) === */
-  // Ferrous — HMS, shredded, plate, rebar
-  serviceFerrous: 'https://cdn.shopify.com/s/files/1/0613/8458/9369/files/image4_75a9c3cb-fde7-48d9-b1b6-1400f6363f78_600x600.jpg?v=1754312891',
-  // Non-ferrous — copper, aluminium, brass
-  serviceNonferrous: 'https://metalimpexgroup.com/wp-content/uploads/2022/08/metal_metauxnonferreux_tetiere.jpg',
-  // Export — container ship leaving port (Loremflickr)
-  serviceExport: lf('container-ship,cargo,port', 2, 1800, 800),
-  // Import — port crane / loading
-  serviceImport: 'https://steelbridgeco.com/wp-content/uploads/2025/07/46e1a615ab2dbb8b42d8c92f4c513c85.jpg',
+  /* === SERVICES (per service id) ===
+     Hazardous → drums / labelled containers / safety
+     Non-hazardous → industrial waste pile / packaging
+     Recovery → graded metal feedstock (the ferrous image works well)
+     Treatment → industrial yard / radiation portal */
+  serviceHazardous: 'https://www.weightron.com/wp-content/uploads/2016/03/Weightron-Radiation-Detection-for-Scrap-Metal-Yards.jpg',
+  serviceNonHazardous: 'https://steelbridgeco.com/wp-content/uploads/2025/07/46e1a615ab2dbb8b42d8c92f4c513c85.jpg',
+  serviceRecovery: 'https://cdn.shopify.com/s/files/1/0613/8458/9369/files/image4_75a9c3cb-fde7-48d9-b1b6-1400f6363f78_600x600.jpg?v=1754312891',
+  serviceTreatment: 'https://www.okonrecycling.com/wp-content/uploads/2025/10/large-scrap-metal-yard-trucks-radiation-portal.png',
 
   /* === SUSTAINABILITY === */
   sustainHero: 'https://en.metallexpres.pl/wp-content/uploads/2023/08/xzrownowazony-rozwoj-obraz.jpg.pagespeed.ic.8YSkd-MRYx.jpg',
@@ -73,12 +73,12 @@ export const IMAGES = {
 // Map a service id to its image
 export const serviceImage = (id: string): string => {
   const map: Record<string, string> = {
-    ferrous: IMAGES.serviceFerrous,
-    nonferrous: IMAGES.serviceNonferrous,
-    export: IMAGES.serviceExport,
-    import: IMAGES.serviceImport,
+    hazardous: IMAGES.serviceHazardous,
+    nonhazardous: IMAGES.serviceNonHazardous,
+    recovery: IMAGES.serviceRecovery,
+    treatment: IMAGES.serviceTreatment,
   };
-  return map[id] || IMAGES.serviceFerrous;
+  return map[id] || IMAGES.serviceHazardous;
 };
 
 // Blog post id → image

@@ -1,28 +1,28 @@
-// Shared data — company, services, cases, blog posts
+// Shared data — company, services, insights.
+// All copy lives here so a single file edit changes the whole site.
 
 export const COMPANY = {
-  name: 'MR Greentech',
-  established: 2014,
+  name: 'M R Greentech',
+  established: 1998,
+  founder: 'Manickaraj',
   hq: 'Chennai, Tamil Nadu, India',
   gst: '33AAHCM4821N1Z2',
-  iec: '0414028341',
-  email: 'trade@mrgreentech.in',
+  cpcb: 'HW/AUTH/TN/2024/4218',           // Hazardous Waste authorisation number
+  email: 'info@mrgreentech.in',
   phone: '+91 44 4212 8800',
   phone2: '+91 98400 21188',
   address: 'Unit 4B, Ambattur Industrial Estate, Chennai 600058, Tamil Nadu, India',
   lat: '13.0878°N, 80.1619°E',
-  yearsActive: 12,
-  // Headline cumulative numbers — May 2026 close-of-month, kept consistent
-  // across home hero / intro / stats / sustainability / services pages.
-  tonsHandled: '192,400',
-  shipments: '1,318',
-  countries: 11,
-  onSpecRate: '99.4%',
+  yearsActive: 28,
+  // Headline cumulative numbers — May 2026, kept consistent across every page.
+  wasteHandled: '240,000+',                // MT collected, treated or recovered since 1998
+  industrialClients: '420+',
+  recoveryRate: '92%',                     // material diversion from landfill
   yardSqft: '60,000',
   team: 24,
-  ports: ['Chennai', 'Kamarajar (Ennore)', 'Kattupalli'],
-  inspectors: ["Lloyd's Register", 'Bureau Veritas', 'SGS', 'Intertek'],
-  lastUpdated: 'May 13, 2026',
+  facilities: 4,                            // collection bays, treatment line, recovery floor, dispatch
+  inspectors: ['CPCB', 'TNPCB', 'AERB', 'SGS'],
+  lastUpdated: 'May 17, 2026',
 };
 
 export interface ProcessStep {
@@ -52,9 +52,9 @@ export interface Service {
   detail: string[];
   /** Concrete differentiators (4-6 bullet points). */
   highlights: string[];
-  /** ISRI / industry grades and sub-services this desk handles. */
+  /** Categories and sub-services this desk handles. */
   grades: string[];
-  /** Cumulative MT shipped under this service since 2014. */
+  /** Cumulative MT handled under this service since 1998. */
   volumeTons: number | null;
   /** Headline numbers shown in the snapshot column. */
   metrics: ServiceMetric[];
@@ -62,7 +62,7 @@ export interface Service {
   pricingBasis: string;
   /** Who this service typically lands with. */
   customerProfiles: string[];
-  /** Inspection bodies normally engaged for this service. */
+  /** Inspection / regulatory bodies engaged for this service. */
   inspections: string[];
   /** Service-level FAQ rendered on the page. */
   serviceFaqs: ServiceFaq[];
@@ -73,236 +73,233 @@ export interface Service {
 
 export const SERVICES: Service[] = [
   {
-    id: 'ferrous',
-    name: 'Ferrous Scrap Trade',
-    icon: 'factory',
-    short: 'HMS 1&2, shredded, bonus-grade and turnings — sourced across South India, graded and shipped to foundries in 11 countries.',
+    id: 'hazardous',
+    name: 'Hazardous Waste Management',
+    icon: 'warn',
+    short: 'CPCB-authorised collection, transport, treatment and safe disposal of hazardous industrial waste — chemicals, solvents, oils, sludges, e-waste and contaminated packaging.',
     detail: [
-      "Ferrous scrap is the backbone of the desk and the reason MR Greentech was founded in 2014. We aggregate mill returns, demolition site material, OEM clean-outs and shipbreaker output from across Tamil Nadu, Karnataka and Andhra Pradesh, grade it to ISRI specifications at our Ambattur yard, and ship it under our IEC to long-running buyers in Italy, Germany, the UAE and Vietnam.",
-      "About 60% of our ferrous volume flows under rolling monthly contracts — buyers who have been with us for 3+ years and lock in grade, port, and freight structure 12 months out. The remaining 40% is spot — single-vessel charters, opportunistic mill returns, and short-window bonus-grade lots that we move when the spread justifies it.",
-      "Every consignment is documented under Basel Annex IX, third-party inspected before container sealing, and radiation-tested at both ingress and egress. That paper trail is the single biggest reason our average dispute rate at discharge is under 0.4%.",
+      "Hazardous waste is the desk M R Greentech was built around. From the very first pickup contract Manickaraj signed in 1998, the company has handled material that requires a manifest, a trained handler and a documented chain of custody from generator to final disposal. Today we serve over 180 manufacturing units across Tamil Nadu under continuous Hazardous Waste Authorisation from CPCB and TNPCB.",
+      "The categories we manage span the Schedule I, II and III lists under the Hazardous and Other Wastes (Management and Transboundary Movement) Rules, 2016 — used oils and emulsions, spent solvents, paint sludges, chemical residues, contaminated drums and packaging, e-waste, lead-acid batteries, and process residues from electroplating, pharmaceutical and textile industries.",
+      "Every consignment leaves the generator's gate with a six-copy manifest, travels in a GPS-tracked vehicle, and is delivered to a treatment, recovery, or co-processing facility that is authorised for that exact category. Customers receive a digital disposal certificate within seven working days of final destruction or recovery — proof for their own statutory returns and audits.",
     ],
     highlights: [
-      'In-house ISRI grading with handheld density and magnetic checks at intake',
-      'Hydraulic shear and twin-ram baler on site — no third-party processing dependency',
-      'Direct relationships with 14 mill-cluster suppliers across Coimbatore, Salem and Erode',
-      '3 active South India ports — Chennai, Ennore, Kattupalli — booked monthly',
-      'Indexed pricing to CFR Turkey HMS 1/2 with transparent freight pass-through',
+      'Continuous CPCB / TNPCB hazardous-waste handling authorisation since 2008',
+      'GPS-tracked dedicated fleet — only vehicles built for hazardous transport',
+      'Manifest-based chain of custody, six-copy and digital',
+      'Tie-ups with TSDF (treatment, storage & disposal facility) and co-processing kilns',
+      'Disposal certificate issued within 7 working days of final treatment',
     ],
-    grades: ['HMS 1/2 (80:20)', 'Shredded 211', 'Bonus Grade 233', 'Plate & Structural', 'Turnings & Borings', 'Light Iron 200'],
-    volumeTons: 98400,
+    grades: [
+      'Used oil & emulsions',
+      'Spent solvents & process chemicals',
+      'Paint sludges & chemical residues',
+      'Contaminated drums & packaging',
+      'E-waste (CRT, PCB, peripherals)',
+      'Lead-acid & lithium-ion batteries',
+    ],
+    volumeTons: 86400,
     metrics: [
-      { label: 'Cumulative volume', value: '98,400', unit: 'MT' },
-      { label: 'Lead time', value: '8–12', unit: 'weeks' },
-      { label: 'Minimum lot', value: '22', unit: 'MT' },
-      { label: 'Containers / mo', value: '38', unit: '40ft HC' },
-      { label: 'Active corridors', value: '6' },
-      { label: 'On-spec rate', value: '99.4', unit: '%' },
+      { label: 'Cumulative volume', value: '86,400', unit: 'MT' },
+      { label: 'Active client units', value: '180+' },
+      { label: 'Vehicles in fleet', value: '14', unit: 'GPS-tracked' },
+      { label: 'Disposal cert SLA', value: '7', unit: 'working days' },
+      { label: 'Authorisation', value: 'CPCB / TNPCB' },
+      { label: 'Compliance incidents', value: '0', unit: 'in 2025' },
     ],
-    pricingBasis: 'Indexed to CFR Turkey HMS 1/2 with grade adjustments and transparent freight pass-through. Quotes valid 5 working days.',
+    pricingBasis: 'Priced per category and volume under annual or multi-year contracts. Pickup frequency from on-call to weekly. Standalone one-time pickups available for non-recurring generators.',
     customerProfiles: [
-      'EU foundries (Italy, Germany)',
-      'Tamil Nadu re-rolling mills',
-      'MENA rebar producers (UAE, Oman)',
-      'South-East Asian induction furnaces',
+      'Tamil Nadu manufacturing units — auto, pharma, electronics',
+      'Electroplating and surface-finishing workshops',
+      'Textile and dyeing clusters',
+      'IT and ITES e-waste programmes',
     ],
-    inspections: ["Lloyd's Register", 'Bureau Veritas', 'SGS'],
+    inspections: ['CPCB', 'TNPCB', 'SGS (third-party verification)'],
     serviceFaqs: [
-      { q: 'How tight do you grade HMS 80:20?', a: "Tighter than the spec. ISRI calls for at most 5% gauge below 6mm; our 80:20 averages 3.1% by weight. Buyers running induction furnaces tell us the recovery rate is materially better — that's why they pay a $4–6/MT premium over the index." },
-      { q: 'Can you handle radioactive scrap concerns?', a: 'Portal monitors at the gate sweep every truck, and every export container is re-tested before sealing by Bureau Veritas or SGS. Radiation certificates travel with the BL. Zero contamination events on shipments in the last 36 months.' },
-      { q: 'What freight terms do you offer?', a: 'Standard is CFR with us booking vessel space. We also support FOB for buyers who run their own freight forwarders, and CIF where buyers want our marine insurance binding on the cargo.' },
-      { q: 'Is there a minimum volume to start a contract?', a: 'For spot orders: one container (22 MT). For rolling offtake: 200 MT/month minimum so we can plan port slots. Below that, we will quote but refer you to a yard partner if the economics make sense.' },
+      { q: 'Do we need our own hazardous waste authorisation to engage you?', a: 'You need an authorisation as a generator, which is filed with TNPCB. We help you complete the application if you do not already hold one — usually a 4-6 week process. Once approved, you can hand the consignment to us under your manifest and our authorisation handles the transport, treatment and disposal end.' },
+      { q: 'How quickly can you mobilise for an unscheduled pickup?', a: 'Within 24 hours for clients on an annual contract. For one-off generators we typically respond within 3-5 working days depending on category and quantity. Categories that need specialised vehicles (e.g. liquid hazardous) may take a day longer.' },
+      { q: 'What paperwork do we receive?', a: 'A signed Form 10 manifest at pickup (six copies, distributed per CPCB rule), a transport receipt with vehicle GPS log, and a final disposal certificate from the TSDF or co-processor within seven working days. Everything is also stored in our digital vault for seven years.' },
+      { q: 'Can you handle e-waste under EPR?', a: 'Yes. We are a registered E-Waste Recycler with the CPCB EPR portal and can fulfil EPR obligations for producers under both Schedule I and Schedule II categories. We share monthly recycling certificates that map directly to your EPR target.' },
     ],
-    processTitle: 'Mill return to molten metal.',
+    processTitle: 'Generator gate to safe disposal.',
     process: [
-      { n: '01', t: 'Source', d: 'Mill returns, demolition sites, OEM clusters across Tamil Nadu', icon: 'truck' },
-      { n: '02', t: 'Magnetise', d: 'Magnet sort, ISRI HMS / shredded grading at intake', icon: 'scale' },
-      { n: '03', t: 'Process', d: 'Hydraulic shear and bale at the Ambattur yard', icon: 'factory' },
-      { n: '04', t: 'Document', d: 'Basel Annex IX, PSIC, radiation certification per lot', icon: 'doc' },
-      { n: '05', t: 'Ship', d: '40ft HC containers · Chennai port → EU foundries', icon: 'ship' },
+      { n: '01', t: 'Audit',     d: 'On-site waste characterisation, category mapping, manifest preparation', icon: 'eye' },
+      { n: '02', t: 'Pickup',    d: 'GPS-tracked dedicated vehicle, trained driver, scheduled or on-call', icon: 'truck' },
+      { n: '03', t: 'Transport', d: 'Manifest custody, real-time tracking, weighbridge ticket at receipt', icon: 'ship' },
+      { n: '04', t: 'Treat',     d: 'Treatment, co-processing, secure landfill — category-appropriate route', icon: 'factory' },
+      { n: '05', t: 'Certify',   d: 'Disposal certificate, digital archive, 7-year retention', icon: 'doc' },
     ],
   },
   {
-    id: 'nonferrous',
-    name: 'Non-Ferrous Scrap',
-    icon: 'scale',
-    short: 'Copper, aluminium, brass, lead and Zorba — ISRI-graded with XRF verification and full material declaration.',
+    id: 'nonhazardous',
+    name: 'Non-Hazardous Industrial Waste',
+    icon: 'truck',
+    short: 'Scheduled collection of non-hazardous industrial waste — manufacturing scrap, packaging, food-grade residues, construction debris and general factory waste.',
     detail: [
-      "Non-ferrous is where reputation is built. Copper birch/cliff trades at $8,800–9,200/MT in May 2026; a single mis-grading on a 40ft container is a $30K problem. We mitigate that by XRF-checking every lot at intake, holding a 50-piece random sample for each consignment, and sending sample-lot pre-shipment for any new supplier or new grade.",
-      "Our copper and brass desk has been running since 2019; aluminium opened in 2020 once the Aalborg supplier relationship matured. Today we move roughly 320 MT/month of birch/cliff, 580 MT/month of taint/tabor, plus opportunistic Zorba and Honey Brass when the LME spread justifies it.",
-      "Material declaration is the unglamorous half of the desk. REACH SVHC checks, RoHS limits, country-of-origin tracking — most buyers do not ask for it explicitly until customs flags an HS-code mismatch. We file it pre-emptively on every container, which has saved customers an average of 4.2 days at destination port.",
+      "Most industrial waste streams are not hazardous, but they still need a disciplined collection partner. Skipping pickups, mixing streams or letting waste accumulate inside the factory boundary creates housekeeping headaches, fire risk, and pressure on the production floor.",
+      "M R Greentech runs rolling weekly and bi-weekly pickup contracts for over 240 industrial generators across Chennai and the Ambattur, Sriperumbudur and Maraimalai Nagar industrial corridors. The desk handles general factory waste, paper, cardboard, plastic packaging, wood pallets, food-grade canteen waste, and construction & demolition (C&D) debris.",
+      "What separates this from a typical municipal contractor is the segregation discipline at pickup. Our crews are trained to sort streams at the source — recyclables go to the materials recovery line, organics to the composting tie-up, and inert C&D to the authorised disposal site. That source separation is what makes our 92% diversion rate possible.",
     ],
     highlights: [
-      'XRF gun-tested at intake — every lot, no exceptions',
-      'Eddy-current separation and density float-sink testing on Zorba lots',
-      'LME-linked pricing with transparent ISRI-grade premium / discount table',
-      '4 origin desks (São Paulo, Aalborg, Hamburg, Dubai) with on-site quarterly audits',
-      'LC and SBLC structures negotiated through HDFC Bank and StanChart',
+      'Rolling weekly / bi-weekly contracts with 240+ industrial units',
+      'Source segregation at pickup — not after',
+      'Dedicated fleet for wet, dry and C&D streams',
+      'Monthly volume reports for ESG / sustainability disclosures',
+      '92% diversion from landfill, all streams combined',
     ],
-    grades: ['Birch / Cliff Copper', 'Berry Copper #1', 'Taint / Tabor Aluminium', 'Zorba 95/5', 'Honey Brass', 'RAINS Lead', 'Yellow Brass', 'Mixed Heavy Copper'],
+    grades: [
+      'General factory waste',
+      'Paper & cardboard packaging',
+      'Plastic packaging & films',
+      'Wood pallets & crates',
+      'Canteen / food-grade residues',
+      'Construction & demolition debris',
+    ],
+    volumeTons: 112800,
+    metrics: [
+      { label: 'Cumulative volume', value: '112,800', unit: 'MT' },
+      { label: 'Active contracts', value: '240+' },
+      { label: 'Pickup cycles', value: '7 / week' },
+      { label: 'Diversion from landfill', value: '92', unit: '%' },
+      { label: 'Reporting cadence', value: 'Monthly' },
+      { label: 'Crew', value: '11', unit: 'trained operators' },
+    ],
+    pricingBasis: 'Per-pickup or per-MT pricing under annual contracts. Volume discounts above 20 MT/month. Optional sub-services: skip rental, on-site segregation training, ESG reporting addendum.',
+    customerProfiles: [
+      'Manufacturing units in Ambattur, Sriperumbudur, MMN clusters',
+      'Logistics warehouses and 3PL operators',
+      'Commercial campuses and IT parks',
+      'Construction project sites (C&D)',
+    ],
+    inspections: ['TNPCB', 'Chennai Corporation', 'SGS (audit)'],
+    serviceFaqs: [
+      { q: 'How is this different from municipal waste collection?', a: 'Municipal collectors generally take mixed waste to a single transfer station. We sort at source, route each stream to its right destination (recovery / compost / inert) and report back monthly with the diversion split. The contract is also commercial — billed and managed like any other industrial service, not a flat municipal fee.' },
+      { q: 'Can you handle one-off construction debris pickups?', a: 'Yes — skip rental + per-load haulage for one-time C&D projects. Common for renovation jobs and small construction sites. We coordinate with TNPCB-approved inert disposal sites; you get the disposal receipt.' },
+      { q: 'Do you provide ESG / sustainability reports?', a: 'Yes. Monthly volume report by category, diversion percentage, and a year-on-year trend chart. Useful for BRSR (Business Responsibility & Sustainability Reporting) filings. Annual summary is signed and stamped for audit use.' },
+      { q: 'What about wet canteen waste?', a: 'We collect daily or alternate-day under a separate wet-stream contract. The material is routed to a composting partner where it becomes agri-grade compost. Sealed wet bins are provided.' },
+    ],
+    processTitle: 'Source segregation to second life.',
+    process: [
+      { n: '01', t: 'Survey',   d: 'Site walk, stream identification, bin & schedule plan',         icon: 'search' },
+      { n: '02', t: 'Setup',    d: 'Colour-coded bins, signage, brief operator training',           icon: 'grid' },
+      { n: '03', t: 'Pickup',   d: 'Weekly / bi-weekly route, weighed at gate',                     icon: 'truck' },
+      { n: '04', t: 'Segregate',d: 'Streams routed to recovery / compost / inert disposal',         icon: 'filter' },
+      { n: '05', t: 'Report',   d: 'Monthly diversion breakdown emailed to plant team',             icon: 'chart' },
+    ],
+  },
+  {
+    id: 'recovery',
+    name: 'Materials Recovery & Recycling',
+    icon: 'refresh',
+    short: 'Sorting and material recovery at our Ambattur facility — ferrous, non-ferrous, plastics, paper and e-waste extraction back into the supply chain.',
+    detail: [
+      "Materials recovery is where the company's environmental commitment becomes a business outcome. Roughly 92% of the material that lands at our Ambattur gate gets a second life — either as recovered metal sold back to foundries, recycled plastic granules sold back to converters, paper bales sold to mills, or e-waste components sold to authorised refiners.",
+      "The recovery line was commissioned in 2009 and last upgraded in 2024 with a twin-ram baler, eddy-current separator and an XRF sorting station. Through-put capacity is roughly 12 MT per shift; cycle time from inbound to ready-for-dispatch is typically 48-72 hours depending on stream.",
+      "What we sell on is graded to standard buyer specifications — ISRI grades for metals, IS-15004 for plastics, mill-grade for paper. Customers know what they are buying because we issue a material declaration and a third-party assay (XRF for non-ferrous, density check for plastics, fibre test for paper) with every dispatch.",
+    ],
+    highlights: [
+      '92% materials diversion across all incoming streams',
+      'Twin-ram baler, eddy-current separator, XRF sort station',
+      'ISRI-graded metals, IS-15004 plastics, mill-grade paper',
+      'In-house lab for XRF, density and moisture testing',
+      'Recovered material sold directly to South India end-users',
+    ],
+    grades: [
+      'Ferrous scrap — HMS 1/2, shredded, bonus, plate',
+      'Non-ferrous — copper, aluminium, brass, lead',
+      'Recycled plastics — PET, HDPE, PP, LDPE',
+      'Paper & cardboard bales — mill grade',
+      'E-waste board & component recovery',
+      'Wood fines & biomass pellets',
+    ],
     volumeTons: 41200,
     metrics: [
-      { label: 'Cumulative volume', value: '41,200', unit: 'MT' },
-      { label: 'Lead time', value: '6–10', unit: 'weeks' },
-      { label: 'Minimum lot', value: '18', unit: 'MT' },
-      { label: 'XRF tests / mo', value: '420' },
-      { label: 'Active origins', value: '4', unit: 'countries' },
-      { label: 'Grade variance', value: '±1.5', unit: '%' },
+      { label: 'Cumulative volume', value: '41,200', unit: 'MT recovered' },
+      { label: 'Diversion rate', value: '92', unit: '%' },
+      { label: 'Through-put', value: '12', unit: 'MT / shift' },
+      { label: 'Cycle time', value: '48–72', unit: 'hours' },
+      { label: 'Active off-takers', value: '60+' },
+      { label: 'Lab tests / month', value: '420' },
     ],
-    pricingBasis: 'LME copper / aluminium reference plus an ISRI-grade premium/discount table. Honey brass and RAINS lead priced on the daily zinc-copper composite.',
+    pricingBasis: 'Recovery service is bundled into the collection contract on a revenue-share model — the generator gets a credit against the next month\'s invoice based on the value of recovered material at LME / Indian secondary market index.',
     customerProfiles: [
-      'Tamil Nadu die-casters (Coimbatore, Salem)',
-      'Cable and conductor manufacturers',
-      'EU secondary smelters',
-      'Valve and fittings forgers',
+      'Tamil Nadu foundries and re-rolling mills (metal off-take)',
+      'South India plastic converters (PET, HDPE granules)',
+      'Paper mills in Sivakasi and Coimbatore',
+      'Authorised refiners (e-waste components)',
     ],
-    inspections: ['Bureau Veritas', 'SGS', 'Intertek'],
+    inspections: ['SGS', 'Bureau Veritas (third-party assay)'],
     serviceFaqs: [
-      { q: 'How do you verify copper grade on import?', a: 'XRF on a 50-piece random sample at the supplier yard before shipment, then a second XRF on intake at Ambattur. Variance over 1.5% triggers a third independent test and a renegotiation. The variance limit is binding in our supplier contracts.' },
-      { q: 'Do you handle Zorba?', a: 'Yes — 95/5 spec by weight, density-checked. We run six grading tests on each lot (visual, magnetic, eddy-current, XRF sample, density float, moisture loss). Detailed in our published field-notes article.' },
-      { q: 'What is your typical premium over LME?', a: 'Birch/Cliff settles around LME copper -3 to -5%. Taint/Tabor around LME aluminium -8 to -12% depending on iron content. We publish the exact discount table on signed contracts.' },
-      { q: 'Can you sell into India under domestic terms?', a: 'Yes. Import-and-resell to Indian die-casters under INR contracts works for buyers who do not have IEC bandwidth. Adds 8–12 days of buffer for paperwork but is otherwise transparent.' },
+      { q: 'How do you grade non-ferrous metals?', a: 'XRF analysis on every lot at intake, plus a 50-piece random sample for any new supplier. We grade against the ISRI nomenclature — Birch/Cliff for copper, Taint/Tabor for aluminium, Honey for brass. Buyers pay a published premium / discount table off the LME daily.' },
+      { q: 'Can you handle mixed bales?', a: 'Yes — mixed paper, mixed plastics and mixed e-waste are routine. Our sort line separates the bale by polymer / fibre type and re-bales for the relevant end market. Cycle adds 24 hours over single-grade material.' },
+      { q: 'Is the recovered metal exported?', a: 'Primarily sold domestically to South India end-users. We hold the IEC for occasional export where the spec matches an EU foundry or MENA mill, but the majority of the metal flows back into Tamil Nadu re-rolling mills and Coimbatore foundries.' },
+      { q: 'Can you take material directly from outside generators?', a: 'Yes — third-party material is welcome on a weighbridge-and-cash basis. We grade on intake, pay LME / Indian secondary index pricing, and the material flows into our recovery line. Bring photo ID and a transport receipt.' },
     ],
-    processTitle: 'Audited supplier to die-caster.',
+    processTitle: 'Inbound waste to outbound feedstock.',
     process: [
-      { n: '01', t: 'Source', d: 'Audited yards in São Paulo, Aalborg, Hamburg and Dubai', icon: 'globe' },
-      { n: '02', t: 'Assay', d: 'XRF gun analysis and chemical composition verification', icon: 'search' },
-      { n: '03', t: 'Sort', d: 'Hand-pick, density sort, eddy-current separation', icon: 'filter' },
-      { n: '04', t: 'Declare', d: 'Material declaration, REACH and RoHS compliance documentation', icon: 'shield' },
-      { n: '05', t: 'Ship', d: 'LME-priced lots, LC-backed delivery to Indian die-casters', icon: 'ship' },
+      { n: '01', t: 'Inbound',  d: 'Weighbridge, gate pass, visual grade, intake to bay',  icon: 'truck' },
+      { n: '02', t: 'Sort',     d: 'Magnetic + eddy-current + XRF; manual finishing',       icon: 'filter' },
+      { n: '03', t: 'Process',  d: 'Bale, shred or shear depending on outgoing spec',       icon: 'factory' },
+      { n: '04', t: 'Test',     d: 'XRF assay, density / moisture, sample retention',       icon: 'search' },
+      { n: '05', t: 'Dispatch', d: 'Truck-load to end-buyer with material declaration',     icon: 'arrow' },
     ],
   },
   {
-    id: 'export',
-    name: 'Export Logistics',
-    icon: 'ship',
-    short: 'End-to-end container and bulk vessel exports from Chennai, Ennore and Kattupalli to EU, MENA and East Asia.',
+    id: 'treatment',
+    name: 'Treatment & Safe Disposal',
+    icon: 'shield',
+    short: 'Treatment and final disposal partner network — TSDFs, co-processing kilns, secure landfill and authorised incinerators for the categories that cannot be recovered.',
     detail: [
-      "Export logistics is a full-stack service: vessel space booking, container leasing, yard-side stuffing, customs filing, and live tracking from departure to discharge. We operate as a registered shipper at all three Tamil Nadu container ports — Chennai (CNC), Ennore (KPL), and Kattupalli (KAT) — and have direct slot agreements with five major carriers.",
-      "For buyers who want a turn-key landed price, we deliver on CFR or CIF Incoterms with our marine insurance binding on every container. For buyers running their own forwarders we operate as the FOB shipper and hand off at the port gate with a complete documentation pack.",
-      "Container scarcity in 2024-25 forced a hard rethink of our slot booking process. Today we work 60 days ahead on container leases for known offtake contracts, which has dropped our missed-vessel rate from 4.1% in 2024 to 0.7% so far in 2026.",
+      "Not every waste stream can be recovered, and that is the honest truth of the industry. Some categories — heavily contaminated solvents, expired pharmaceuticals, specific halogenated compounds — need destruction, not recycling. M R Greentech operates as the consolidated treatment partner for these tail streams.",
+      "We do not own a TSDF ourselves. Instead, we hold long-running contracts with three CPCB-authorised treatment, storage and disposal facilities in Tamil Nadu, two authorised co-processing kilns at cement plants, and an authorised hazardous-waste incinerator. Each generator's waste is routed to the partner whose authorisation matches the category.",
+      "What this means in practice for a customer: one contract with us, one invoice, one disposal certificate — but a curated downstream network that has the right authorisation for every category we ship. We also handle the documentation and reporting layer: TSDF receipts, weighbridge tickets, disposal certificates, and the annual return filing under Form 4.",
     ],
     highlights: [
-      '3 active South India container ports — full coverage of major shipping lanes',
-      'Direct slot agreements with Maersk, MSC, CMA CGM, Hapag-Lloyd, Hanjin',
-      'Pre-shipment inspection scheduling integrated with the booking workflow',
-      'DGFT, customs and AEO-T1 documentation handled in-house',
-      'Live vessel telemetry shared with buyers via Maersk and CMA APIs',
+      '3 TSDF tie-ups, 2 co-processing kilns, 1 authorised incinerator',
+      'Category-matched routing — no "send everything to landfill"',
+      'Single contract, single invoice, multiple downstream destinations',
+      'Annual Form 4 return filed on your behalf',
+      'AERB radiation portal at every gate (zero contamination in 36 months)',
     ],
-    grades: ['40ft HC container loads', 'Bulk vessel charter (2,500–5,000 MT)', 'Less-than-container groupage', 'Pre-shipment inspection', 'DGFT export filing', 'Marine insurance binding'],
-    volumeTons: 56800,
+    grades: [
+      'Contaminated solvents & process residues',
+      'Expired & off-spec pharmaceuticals',
+      'Paint & coating sludges',
+      'Asbestos-containing material',
+      'Spent catalysts',
+      'PCB-containing capacitors & transformers',
+    ],
+    volumeTons: null,
     metrics: [
-      { label: 'Containers / mo', value: '94', unit: '40ft' },
-      { label: 'Vessel charters / yr', value: '11' },
-      { label: 'Active ports', value: '3' },
-      { label: 'Carriers', value: '5' },
-      { label: 'ETA accuracy', value: '±3.1', unit: 'days' },
-      { label: 'Missed-vessel rate', value: '0.7', unit: '%' },
+      { label: 'TSDF partners', value: '3', unit: 'CPCB-authorised' },
+      { label: 'Co-processing kilns', value: '2' },
+      { label: 'Incinerator', value: '1', unit: 'authorised' },
+      { label: 'Categories handled', value: '40+' },
+      { label: 'Disposal cert SLA', value: '7', unit: 'working days' },
+      { label: 'Document retention', value: '7', unit: 'years' },
     ],
-    pricingBasis: 'Spot CFR + 3% handling fee, or volume-LC discount of 1.5–2.5% for buyers running rolling contracts of 200+ MT/month.',
+    pricingBasis: 'Per-MT pricing varies by category — co-processing is typically cheapest, incineration most expensive. We quote upfront with category, route and disposal cost broken out so customers can budget per stream.',
     customerProfiles: [
-      'EU steel mills and foundries',
-      'MENA rebar producers',
-      'Asian die-casters and re-rollers',
-      'East African construction-steel buyers',
+      'Pharma manufacturers with off-spec or expired batches',
+      'Paint and coating manufacturers',
+      'Power transmission utilities (PCB capacitors)',
+      'Demolition contractors (asbestos-containing material)',
     ],
-    inspections: ["Lloyd's Register", 'Bureau Veritas', 'SGS'],
+    inspections: ['CPCB', 'TNPCB', 'AERB'],
     serviceFaqs: [
-      { q: 'What is your typical transit time to Italy?', a: 'Chennai → Genoa runs 28–32 days door-to-port via Suez when open. We add 4–6 days buffer for customs at Genoa, so total quote-to-discharge is around 34–38 days. We share live vessel position via the carrier API.' },
-      { q: 'Can you handle vessel chartering for large lots?', a: 'Yes — partial vessel charters from 2,500 MT and full vessels from 5,000 MT. We brokered 11 charters in 2025 across HMS, shredded, and plate cargo. The economics flip in favour of charter around 3,500–4,000 MT depending on lane.' },
-      { q: 'Do you ship under Letters of Credit?', a: 'Standard for export contracts. We work with HDFC Bank, ICICI, StanChart and IndusInd for LC negotiation. SBLC for opening-customer relationships, irrevocable LC at sight for established buyers.' },
-      { q: 'How do you handle Red Sea routing today?', a: 'In May 2026 most carriers still route around the Cape of Good Hope. That adds 8–10 days versus pre-2024 Suez routing and roughly $80/TEU. We quote both options for buyers and let them choose, but default to Cape for predictability.' },
+      { q: 'Do you guarantee final disposal?', a: 'Yes. The contract explicitly transfers disposal liability to us once material leaves the generator gate under our manifest. We provide a final disposal certificate from the TSDF / co-processor / incinerator. The certificate is your statutory proof under Schedule I of the Hazardous Waste Rules.' },
+      { q: 'Why don\'t you own a TSDF?', a: 'Owning a TSDF requires environmental clearance, land acquisition, capital and continuous operation that does not match the categories we handle. Our network model lets us route each category to the partner with the right authorisation — a halogenated solvent goes to the incinerator, used oil goes to co-processing, paint sludge goes to TSDF landfill. One-size-fits-all does not work for waste.' },
+      { q: 'How do you handle radiation-contaminated material?', a: 'Portal monitors at every gate (calibrated by AERB), handheld GM monitors for spot-checks, and an isolation bay for any alarm. If contamination is confirmed, the material is handed to BARC under their take-back protocol. Zero contamination events in the last 36 months.' },
+      { q: 'Can you take asbestos?', a: 'Yes — under our asbestos-handling protocol with PPE, sealed bags, and routing to an authorised inert disposal site. Pricing is per kg because of the handling and PPE overhead. Bring third-party identification of the material if possible.' },
     ],
-    processTitle: 'Yard gate to vessel hold.',
+    processTitle: 'Categorise, route, document.',
     process: [
-      { n: '01', t: 'Book', d: 'Vessel space, container lease and schedule slot booking', icon: 'clock' },
-      { n: '02', t: 'Stuff', d: 'Yard-side loading, weighbridge ticket, photo log', icon: 'box' },
-      { n: '03', t: 'Inspect', d: "PSIC by Lloyd's / Bureau Veritas before container sealing", icon: 'check' },
-      { n: '04', t: 'Customs', d: 'Shipping bill filing, DGFT clearance, port handover', icon: 'doc' },
-      { n: '05', t: 'Track', d: 'Real-time vessel telemetry from departure to discharge', icon: 'chart' },
+      { n: '01', t: 'Classify', d: 'Category determination per Schedule I / II / III',          icon: 'eye' },
+      { n: '02', t: 'Route',    d: 'TSDF / co-processing / incinerator chosen by authorisation', icon: 'arrow' },
+      { n: '03', t: 'Transport',d: 'GPS-tracked vehicle, manifest custody',                     icon: 'truck' },
+      { n: '04', t: 'Destroy',  d: 'Treatment, incineration, secure landfill — as appropriate', icon: 'warn' },
+      { n: '05', t: 'File',     d: 'Disposal certificate + Form 4 return on your behalf',       icon: 'doc' },
     ],
   },
-  {
-    id: 'import',
-    name: 'Import Sourcing',
-    icon: 'globe',
-    short: 'Audited supplier relationships in Brazil, Denmark, Germany and the UAE — landed cost guaranteed, paperwork end-to-end.',
-    detail: [
-      "Imports are how Indian die-casters and re-rolling mills bridge the gap between domestic ferrous availability and their actual furnace demand. We run four origin desks — São Paulo, Aalborg, Hamburg, Dubai — each with a named MR Greentech representative who visits supplier yards quarterly, signs off on every consignment pre-shipment, and is the buyer's escalation point if anything is off at discharge.",
-      "The audit work is unglamorous but it is what makes the import business defensible. Felipe Azevedo (São Paulo) ran 38 supplier audits in 2025; Ingrid Sørensen (Aalborg) ran 24. Each audit is a 2-day site visit with our standard 40-point checklist covering weighbridge calibration, grading practice, document trail, worker safety, and radiation handling.",
-      "We close 70% of new imports on Letters of Credit, with the rest on 30% advance plus 70% against scanned BL. Marine insurance is included on CIF contracts; for CFR buyers we hand off the cargo with a marine cover certificate from New India Assurance.",
-    ],
-    highlights: [
-      '4 origin desks with named representatives on the ground',
-      'Quarterly supplier audits — 62 conducted in 2025',
-      'LC, SBLC, and 30/70 advance-BL structures all routine',
-      'Pre-shipment sample lots on every new supplier relationship',
-      'Marine insurance binding under our blanket policy',
-    ],
-    grades: ['Birch/Cliff Cu (Brazil)', 'Taint/Tabor Al (Denmark)', 'Shredded 211 (Germany)', 'Mixed ferrous (UAE)', 'Scandinavian grade-audited Zorba', 'LC/SBLC-backed trade structures'],
-    volumeTons: 31600,
-    metrics: [
-      { label: 'Cumulative volume', value: '31,600', unit: 'MT' },
-      { label: 'Lead time (spot)', value: '4–6', unit: 'weeks' },
-      { label: 'Lead time (programme)', value: '9–14', unit: 'weeks' },
-      { label: 'Active origin desks', value: '4' },
-      { label: 'Annual audits', value: '62' },
-      { label: 'LC-backed share', value: '70', unit: '%' },
-    ],
-    pricingBasis: 'CFR India indexed to origin LME / regional benchmark plus freight. Forward contracts available 6–12 months out for repeat customers.',
-    customerProfiles: [
-      'Indian die-casters needing premium non-ferrous',
-      'Coimbatore forging cluster (mixed grades)',
-      'Project-based re-rolling mills with one-time large lots',
-      'Foundry consortiums pooling imports',
-    ],
-    inspections: ["Lloyd's Register", 'Bureau Veritas', 'SGS', 'Intertek'],
-    serviceFaqs: [
-      { q: 'How do you guarantee supplier quality at origin?', a: 'Quarterly on-site audits by a named MR Greentech representative who has worked with the supplier for at least 12 months before we list them as a trusted source. We have de-listed 3 suppliers in the last 24 months after audit findings, and we publish the reason internally in our supplier scorecard.' },
-      { q: 'What if the cargo grade is off at discharge?', a: 'Every lot ships with a third-party PSIC and our XRF report. If discharge survey disagrees, we ask for an independent re-inspection at destination port — Lloyd\'s, BV, SGS or Intertek, buyer\'s choice. Split cost. Result is binding on both sides; any short-fall is settled within 14 working days.' },
-      { q: 'Can you import on the buyer\'s IEC?', a: 'Yes — common for first-time importers. We handle origin paperwork, freight booking and marine insurance; the buyer\'s IEC is on the bill of entry. Add 2 weeks to first-shipment timeline for the regulatory bridge.' },
-      { q: 'How much working capital does an import need?', a: 'Roughly 18-22% of FOB value as LC margin if you go through your bank, or 30% advance plus 70% against BL scan. Our credit desk helps buyers structure the cheapest option per their bank relationship.' },
-    ],
-    processTitle: 'Foreign supplier to South Indian buyer.',
-    process: [
-      { n: '01', t: 'Audit', d: 'Boots-on-ground supplier visit and full yard inspection', icon: 'eye' },
-      { n: '02', t: 'Sample', d: 'Pre-shipment sample lot, independent grade verification', icon: 'search' },
-      { n: '03', t: 'Contract', d: 'LC / SBLC structure, Incoterm negotiation, lot pricing', icon: 'edit' },
-      { n: '04', t: 'Insure', d: 'Marine insurance binding, Basel pre-notification filing', icon: 'shield' },
-      { n: '05', t: 'Receive', d: 'Chennai discharge, customs clearance, yard intake', icon: 'truck' },
-    ],
-  },
-];
-
-export interface CaseStudy {
-  id: string;
-  title: string;
-  client: string;
-  country: string;
-  year: number;
-  volume: string;
-  material: string;
-  duration: string;
-  summary: string;
-}
-
-export const CASES: CaseStudy[] = [
-  { id: 'c01', title: 'Porto de Santos → Chennai copper corridor',
-    client: 'Cobre do Brasil S.A.', country: 'Brazil', year: 2025, volume: '2,400 MT',
-    material: 'Birch/Cliff copper scrap', duration: '6-month supply agreement',
-    summary: 'Structured an LC-backed import channel from São Paulo with bi-monthly 40ft HC container consignments, reducing buyer lead time from 14 to 9 weeks.' },
-  { id: 'c02', title: 'Aalborg mixed aluminium programme',
-    client: 'Nordisk Metal ApS', country: 'Denmark', year: 2024, volume: '1,160 MT',
-    material: 'Taint/Tabor & Zorba', duration: '12-month offtake',
-    summary: 'Designed a Scandinavian sourcing pipeline with on-site grade audits in Aalborg and Esbjerg. Redirected material to Tamil Nadu die-casting buyers.' },
-  { id: 'c03', title: 'South India HMS consolidation',
-    client: 'Coimbatore Forging Cluster', country: 'India → EU export', year: 2025, volume: '8,800 MT',
-    material: 'HMS 1/2 (80:20)', duration: 'Rolling monthly',
-    summary: 'Consolidated scrap from 14 mid-sized workshops across Coimbatore, Salem and Erode. Graded, baled and exported via Chennai Port to Italian foundries.' },
-  { id: 'c04', title: 'Hamburg shredded steel import lane',
-    client: 'Rhein-Stahl Recycling GmbH', country: 'Germany', year: 2024, volume: '3,600 MT',
-    material: 'Shredded 211', duration: 'Spot, 3 vessels',
-    summary: 'Spot-chartered a partial vessel load from Hamburg to Kattupalli — saved buyer 11% against prevailing CFR India index.' },
 ];
 
 export interface BlogSection {
@@ -327,231 +324,197 @@ export interface BlogPost {
 export const BLOG: BlogPost[] = [
   {
     id: 'b01',
-    title: 'What a 9% EU scrap tariff would mean for South Indian foundries',
-    date: 'Mar 14, 2026',
-    tag: 'Trade policy',
-    read: 6,
-    excerpt: "The European Commission's proposed 9% export duty on ferrous and non-ferrous scrap would reshape flows from North Europe to Asia. We sketch three scenarios for the Tamil Nadu foundry cluster.",
-    author: 'Mohan Rajan',
-    authorRole: 'Co-founder, Trade desk',
+    title: "What Tamil Nadu's 2026 EPR amendments mean for industrial waste generators",
+    date: 'Apr 22, 2026',
+    tag: 'Policy',
+    read: 7,
+    excerpt: "TNPCB's April 2026 amendments tighten producer responsibility on plastic packaging and e-waste. Here is what the rule actually says, who it affects, and what to do in the next 90 days.",
+    author: 'Manickaraj',
+    authorRole: 'Founder, M R Greentech',
     sections: [
       {
-        heading: 'The policy in one paragraph',
+        heading: 'The amendment in one paragraph',
         paragraphs: [
-          'The European Commission tabled a draft regulation in February proposing a 9% export duty on ferrous and non-ferrous scrap leaving the EU customs union. The stated aim is to keep secondary raw material inside Europe to support domestic decarbonisation. The Council vote is expected in Q3 2026; implementation, if approved, would phase in over 18 months.',
-          'For South Indian foundries, EU scrap accounts for roughly a third of imported feedstock. Italy, Germany and Denmark together shipped 142 vessels of HMS, shredded and Zorba into Chennai and Kattupalli in 2025 alone.',
+          'On 12 April 2026 the Tamil Nadu Pollution Control Board notified amendments to the state-level Extended Producer Responsibility framework covering plastic packaging waste and e-waste. The headline change is that EPR target compliance for FY 2026-27 onwards will be enforced through bank-guarantee bonding rather than only end-of-year certificates.',
+          'For mid-size producers — packaging-intensive manufacturers, importers, and brand owners — this changes EPR from a paperwork exercise to a working-capital one. You now post a guarantee at the start of the year against your projected EPR obligation, and it is released against monthly recycling certificates.',
         ],
       },
       {
-        heading: 'Three scenarios',
-        paragraphs: [
-          'We have modelled three outcomes, each with different assumptions about how the tariff lands and how Indian buyers respond.',
-        ],
+        heading: 'Who it affects',
         list: [
-          'Scenario A · Hard 9% duty across the board. EU scrap CFR India rises by roughly $30–35/MT for HMS. Indian foundries either absorb the cost or shift to domestic sources, where ferrous availability is already tight.',
-          'Scenario B · Carve-outs for low-carbon EAF buyers. Indian importers who can prove EAF use and renewable-grid electrification claim 50–70% rebates. Paperwork burden goes up, but landed cost rises only $10–15/MT.',
-          'Scenario C · The duty stalls in Council, never implemented. Status quo, but the threat alone is already pushing some buyers to lock 12-month forward contracts at fixed CFR.',
+          'Plastic packaging producers above 1 MT / year (lowered from 5 MT in 2024)',
+          'E-waste producers, importers and brand owners in Schedule I and II',
+          'Recyclers and dismantlers — now required to file monthly returns on the central portal',
+          'Brand owners selling FMCG or consumer electronics in Tamil Nadu',
         ],
       },
       {
-        heading: 'What we are advising buyers right now',
+        heading: 'What to do in the next 90 days',
         paragraphs: [
-          'Three things: lengthen contract terms where you can, diversify origin (Brazil and the Gulf are not in scope), and start gathering the carbon documentation you will need if Scenario B becomes reality. None of this is exotic — it is the same paperwork the EU CBAM regime already asks for on the export side.',
-          "If the duty does land, the foundries that will lose the least are the ones that already buy on quality and paperwork, not just price. We have been telling clients that for two years; this is one more reason it's true.",
+          'First, recalculate your projected EPR obligation for FY 2026-27 against the new lower threshold and updated category multipliers. The plastic packaging multiplier for multi-layer flexibles went up 1.4× — most producers will see their obligation jump 25-40%.',
+          "Second, pre-engage your recycling partner. Bank guarantees are released monthly against certificates, so volume continuity matters more than it did when reconciliation was annual. If your current partner can't issue certificates monthly, the bonding cost compounds.",
+          "Third, file your registration update on the TNPCB portal before 30 June 2026. The grace period for re-registration under the amended framework closes then.",
         ],
       },
       {
         quote: {
-          text: 'The duty would be the single largest change to the EU–India scrap corridor since Basel notifications became mandatory in 2010.',
-          author: 'European Recycling Industries Confederation, Feb 2026 briefing',
+          text: 'The shift to bank-guarantee bonding is the single biggest operational change to EPR since the framework was introduced in 2022.',
+          author: 'TNPCB notification, April 2026',
         },
-      },
-      {
-        heading: 'Longer-term outlook',
-        paragraphs: [
-          'Whatever the Council decides, the direction is clear: secondary raw material is becoming a strategic asset, and the rules around it will keep tightening. India\'s domestic scrap collection is slowly catching up — MoEFCC EPR data shows formal-sector recovery rates up 14% year-on-year — but the gap with what the foundry cluster demands is still wide.',
-          'For our desk, the practical answer is the same it has always been: buy from suppliers who can prove origin, ship under correct HS codes, and keep a clean paper trail. If the rules change, that paper trail is what saves the consignment.',
-        ],
       },
     ],
   },
   {
     id: 'b02',
-    title: 'Grading Zorba: the six tests we run at Ambattur',
-    date: 'Feb 27, 2026',
+    title: 'Six tests we run on every batch of incoming hazardous waste at Ambattur',
+    date: 'Mar 28, 2026',
     tag: 'Field notes',
-    read: 4,
-    excerpt: 'Zorba is the mixed non-ferrous shred that lands at our yard with the most variability. Here are the six tests we run before it leaves for a buyer.',
-    author: 'Sridhar Venkat',
-    authorRole: 'Co-founder, Operations',
-    sections: [
-      {
-        heading: 'What Zorba actually is',
-        paragraphs: [
-          'Zorba is the ISRI code for shredded non-ferrous metals — typically 95% aluminium, 5% other (copper, brass, zinc, stainless). It comes off automotive shredders and white-goods lines, mainly from EU and US sources. The "95/5" spec is nominal; actual lots can swing from 92/8 to 97/3, which makes a meaningful difference to the buyer\'s smelter recovery.',
-          'Because the spec is loose, every Zorba lot that crosses our weighbridge gets graded twice — once at the supplier yard pre-shipment, and again at Ambattur on intake.',
-        ],
-      },
-      {
-        heading: 'The six tests',
-        list: [
-          '01 · Visual sort on a moving conveyor. Two operators pull obvious contamination — wire harnesses, large iron, dense plastics.',
-          '02 · Magnetic separation pass. Catches any ferrous that survived the supplier shredder.',
-          '03 · Eddy-current separator for stainless and zinc-rich pieces. Set to a 9% reject threshold.',
-          '04 · Handheld XRF on a 50-piece random sample. Confirms aluminium share within ±1.5%.',
-          '05 · Density float-sink test on a 20kg sub-sample. Anything below 2.0 g/cc is non-metal contamination.',
-          '06 · Moisture loss on a 10kg lot dried at 105°C for 4 hours. EU buyers will dock 0.5% for every percentage point above 1.2% moisture.',
-        ],
-      },
-      {
-        heading: 'Why this matters for die-casters',
-        paragraphs: [
-          'A die-caster running ADC12 alloy is targeting a tight chemistry window. Zorba that grades 96/4 with iron under 0.8% drops straight into the furnace. Zorba that grades 92/8 with 1.5% iron either gets diluted with primary aluminium (expensive) or downgraded to a secondary alloy (much smaller market).',
-          "Our buyers price the difference. A documented 96/4 lot from us trades at $40–60/MT above an undocumented similar-looking lot. That premium is real, it shows up in the LC, and it covers our six-test cost about eight times over.",
-        ],
-      },
-    ],
-  },
-  {
-    id: 'b03',
-    title: 'Chennai Port to Porto de Santos — a shipping route breakdown',
-    date: 'Feb 03, 2026',
-    tag: 'Logistics',
-    read: 8,
-    excerpt: 'A 34-day vessel route, three feeder transhipments and one of the longest scrap corridors we run. Here is how a copper container actually moves from São Paulo state to a Sundaram Castings furnace.',
-    author: 'Felipe Azevedo',
-    authorRole: 'Sourcing · São Paulo desk',
-    sections: [
-      {
-        heading: 'The route at a glance',
-        paragraphs: [
-          'A 40ft HC container of Birch/Cliff copper leaves the supplier yard in Diadema, São Paulo state, on day -2. Trucked 65 km to Porto de Santos. Loaded on a Hapag-Lloyd or MSC feeder bound for Santos transhipment yard. From there, mainline to Singapore (16 days), feeder to Chennai (8 days). Total door-to-door: 34 days.',
-          'The actual ship-time at sea is closer to 24 days. The rest is port dwell, transhipment, and customs.',
-        ],
-      },
-      {
-        heading: 'Transit math, container by container',
-        paragraphs: [
-          'Days 1–3: Trucking, gate-in at Porto de Santos, Brazilian customs clearance. We use Despachante AssoMar for documentation; turnaround at Santos has been consistent at 36 hours.',
-          'Days 4–6: Feeder sails to Santos North terminal, container reloaded onto mainline vessel.',
-          'Days 7–22: Mainline transit. The vessel rounds the Cape of Good Hope — Suez routing adds $80/TEU in 2026 with the Red Sea premium, so most carriers chose Cape.',
-          'Days 23–24: Singapore transhipment. Hot transfer to a feeder bound for Chennai.',
-          'Days 25–32: Singapore to Chennai. Feeders cycle weekly.',
-          'Days 33–34: Chennai discharge, Indian customs, gate-out to our yard.',
-        ],
-      },
-      {
-        heading: 'Paperwork',
-        paragraphs: [
-          'Every container moves with eleven documents. The four that get held up most often are the Basel Annex IX notification (origin country signs first, then transit countries acknowledge), the COO (Certificate of Origin from the Brazilian chamber), the SGS pre-shipment inspection certificate, and our import IEC declaration.',
-          'We pre-file the Basel notification 60 days before sailing. That window saves us about three calendar days at the Brazilian end.',
-        ],
-      },
-      {
-        heading: 'What can go wrong',
-        list: [
-          'Santos congestion. Three vessels miss berth slots a year on average. Each miss adds 4–7 days.',
-          'Singapore transhipment misconnect. Feeder departs before our container is on the dock. Adds one feeder cycle — 7 days.',
-          'Indian customs query on HS code. Birch/Cliff lands under 7404. A mis-coded lot can sit at port for 5–10 days while clarification is sought.',
-          'Container deposit dispute. Carrier holds the container against demurrage; we have a standing arrangement that caps exposure.',
-        ],
-      },
-      {
-        heading: 'Why this corridor still works',
-        paragraphs: [
-          'Despite the 34-day length, the Brazil–Chennai copper lane has the best price-to-quality ratio we have found for South Indian die-casters. Brazilian shred is consistently graded, paid in dollars, and lands at a CFR India price that beats domestic copper scrap by 6–9% on a like-for-like spec.',
-          'We have run 22 containers on this corridor in the last 18 months. Average ETA accuracy versus initial booking: ±3 days. Zero quality disputes at discharge. The route works because the suppliers, freight forwarders and inspection agencies on both ends have been doing it together for three years.',
-        ],
-      },
-    ],
-  },
-  {
-    id: 'b04',
-    title: 'Why Denmark punches above its weight in aluminium recycling',
-    date: 'Jan 19, 2026',
-    tag: 'Market brief',
     read: 5,
-    excerpt: 'Population 5.9 million, but Denmark consistently exports more graded aluminium scrap than countries 10x its size. The system behind that is worth borrowing from.',
-    author: 'Ingrid Sørensen',
-    authorRole: 'Sourcing · EU desk',
-    sections: [
-      {
-        heading: 'The numbers',
-        paragraphs: [
-          "Denmark exported 168,000 MT of non-ferrous scrap in 2025. Most of it Taint/Tabor aluminium and Zorba. For a country of under 6 million, that's roughly 28 kg of recycled aluminium per capita per year leaving the country graded and certified — comfortably top-three in Europe on a per-capita basis.",
-        ],
-      },
-      {
-        heading: 'The system',
-        paragraphs: [
-          "Three things drive it. First, kerbside aluminium collection is universal and segregated at the household level — there is no 'mixed bag' option. Second, the deposit-return scheme on beverage cans was rolled out in 2002 and now recovers 94% of consumer aluminium beverage packaging. Third, the recycler permitting regime is strict but predictable — once a yard is approved, the paperwork around exports flows fast.",
-          "The result is consistent. A Nordisk Metal Taint/Tabor lot from Aalborg in February grades almost identically to one we lifted in August. That repeatability is what we are buying when we contract them on offtake.",
-        ],
-      },
-      {
-        heading: 'What we source from Aalborg',
-        paragraphs: [
-          'Through our offtake agreement with Nordisk Metal ApS, we lift about 1,000 MT/year of Taint/Tabor and a smaller volume of Zorba. The Taint/Tabor goes to Coimbatore die-casters; the Zorba feeds two smelters in Salem.',
-          'On-site grade audits happen quarterly. We send Felipe from São Paulo or one of our compliance team for a 2-day visit, walking the yard, sampling lots, comparing the supplier\'s self-grade against our own XRF reads. Variance has stayed under 1.8% for three years.',
-        ],
-      },
-      {
-        heading: 'Lessons we are watching for India',
-        paragraphs: [
-          'India\'s formal-sector recycling is growing fast (14% YoY by MoEFCC EPR data), but the kerbside infrastructure that makes Denmark consistent is missing. The closest analogue here is the deposit-return scheme being piloted in Maharashtra for PET bottles. If that succeeds, aluminium cans are the obvious next category.',
-          'For now, Indian non-ferrous demand will keep being met partly by imports. Denmark is one of the cleanest origins for that — we expect to grow our Aalborg book by another 30% in 2026.',
-        ],
-      },
-    ],
-  },
-  {
-    id: 'b05',
-    title: 'Inside our radiation-testing protocol — and why it matters',
-    date: 'Dec 09, 2025',
-    tag: 'Compliance',
-    read: 7,
-    excerpt: 'A radiation-contaminated lot can sink a buyer, a port, and a trader at once. Here is exactly how we test, what we have found, and where the protocol came from.',
+    excerpt: 'Mis-classifying a hazardous waste consignment is how disposal certificates get rejected and disposal liability boomerangs back to the generator. Here is the intake protocol we have run since 2014.',
     author: 'Anitha Kumaresan',
     authorRole: 'Head of Compliance',
     sections: [
       {
         heading: 'Why this matters',
         paragraphs: [
-          "In 2009, a melt at an Indian foundry produced contaminated cobalt-60 steel that ended up in lift buttons sold across Europe. The recall cost the receiving country tens of millions. Since then, every serious scrap trader has run radiation testing on every lot at every gate. We are no exception. The risk is too consequential and the test is too cheap to skip.",
-          "Most contamination is not malicious — it is industrial gauges, medical sources, or research equipment that found its way into a demolition pile. The volume is tiny. The consequence of missing it is enormous.",
+          "A hazardous waste consignment routed to the wrong downstream facility is a problem for everybody. The TSDF / incinerator / co-processor will reject the load if their authorisation does not cover the category, and the rejection sits with the original generator under the polluter-pays principle. Getting the category right at intake is the single highest-leverage check in the whole chain.",
+          "We run six tests on every drum, bag or tanker that comes through our Ambattur gate. The protocol takes 35-50 minutes per consignment and has caught roughly one mis-categorisation per 220 loads over the last three years.",
         ],
       },
       {
-        heading: 'Our protocol',
+        heading: 'The six tests',
         list: [
-          'Every truck through the gate gets a portal monitor sweep — fixed gamma detectors on both sides of the lane, sensitive to 3× background.',
-          'Any alarm triggers immediate isolation. The truck is parked in the quarantine bay, the driver questioned, the load partially uncovered.',
-          'A handheld Geiger-Müller monitor is used to localise the hot spot. If isolated to a single piece, that piece is removed and stored in a shielded cask.',
-          'If the spot is diffuse, the entire load is rejected and returned to supplier with a Form RP-1 incident report.',
-          'Every container leaving for export is re-tested 24 hours before sealing, by an independent third-party (Bureau Veritas or SGS).',
-          'A radiation certificate signed by the third-party agency travels with the BL.',
+          '01 · Visual inspection — label match against manifest, container condition, signs of leakage or pressure',
+          '02 · pH strip test on liquid loads — confirms acid vs base vs neutral declaration',
+          '03 · Density check — flags solvents declared as oils and vice versa',
+          '04 · Halogen spot test — distinguishes halogenated vs non-halogenated solvents (different routing)',
+          '05 · Heavy metals XRF on solid loads — catches lead, cadmium, chromium that may shift category',
+          '06 · Manifest cross-check — generator authorisation, transporter ID, category code, weight',
         ],
       },
       {
-        heading: 'Equipment',
+        heading: 'What we do when a test fails',
         paragraphs: [
-          'We use Mirion / Canberra portal monitors at the gate. They are calibrated annually by AERB-licensed technicians. The handhelds are Thermo RadEye G-10s, three units kept on rotation.',
-          'The cost of the equipment is non-trivial — roughly ₹85 lakh in capital plus annual calibration and consumables — but it is one of the lowest-cost lines on our compliance budget per MT shipped.',
+          'A failed test does not mean the load is rejected. It means the load is parked in our quarantine bay, the generator is called, and we work out together whether the manifest needs amendment or the load needs to go back. Most discrepancies are minor — wrong category code on the manifest while the material itself is correctly described — and we fix the paperwork in under a day.',
+          "Outright rejection is rare (about one in 800 loads) and happens when the material is materially different from what the manifest says, in a way that would make our downstream partners reject it. In those cases the generator gets the load back the same day, with a written assessment they can use to re-engage their handling team.",
+        ],
+      },
+    ],
+  },
+  {
+    id: 'b03',
+    title: 'Inside our materials recovery process — how 92% of waste gets a second life',
+    date: 'Mar 04, 2026',
+    tag: 'Operations',
+    read: 6,
+    excerpt: 'A walk-through of the recovery line at Ambattur. From inbound weighbridge to outbound dispatch — 48 to 72 hours, eight stations, and the numbers behind a 92% diversion rate.',
+    author: 'Sridhar Venkat',
+    authorRole: 'Operations · Recovery line',
+    sections: [
+      {
+        heading: 'The recovery line at a glance',
+        paragraphs: [
+          'Our recovery line at Ambattur runs through eight stations between the inbound weighbridge and the outbound truck. The order is fixed: weigh → visual sort → magnetic pull → eddy-current → manual finishing → XRF assay → bale or shred → dispatch with declaration.',
+          'Through-put on a typical 8-hour shift is roughly 12 MT of mixed inbound material. The cycle from inbound to ready-for-dispatch is 48-72 hours depending on stream — single-grade material moves through in a single shift, mixed material adds a day for sorting.',
         ],
       },
       {
-        heading: 'What we have found',
-        paragraphs: [
-          'In the last three years, our gate monitors have triggered 14 alarms. Twelve were industrial — radiography sources from old construction equipment, smoke detector remnants, gauge heads. Two were genuine misclassified medical sources, both handled by AERB and returned to the supplier yard. None made it past the second test.',
-          'That hit rate — about one true alarm per 1,500 lots — is consistent with what other professional yards report. The expensive cases are not the ones that trigger an alarm. The expensive ones are the ones that quietly do not.',
+        heading: 'The 92% number, broken out',
+        list: [
+          'Ferrous metals — 99% recovery, sold to South India re-rolling mills',
+          'Non-ferrous metals — 97% recovery, XRF-graded to ISRI standards',
+          'Plastics (PET / HDPE / PP) — 88% recovery as feedstock-grade granules',
+          'Paper & cardboard — 95% recovery as mill-grade bales',
+          'E-waste — 84% material recovery (board components, metals)',
+          'Residual to TSDF or incinerator — 8% of intake by weight',
         ],
       },
       {
-        heading: 'Regulation',
+        heading: 'Where the 8% goes',
         paragraphs: [
-          'India\'s AERB has set out radiation-monitoring requirements for scrap yards under the Atomic Energy (Safe Disposal of Radioactive Waste) Rules. Our protocol exceeds the minimum on instrument count and testing frequency. Every six months we file a self-audit report; every two years we host an AERB site visit.',
-          'For exports, the Basel notification process also requires a radiation declaration. The signed third-party certificate we travel with every container is what satisfies that.',
+          'Roughly 8% of incoming material does not have a recovery route. This is mostly heavily contaminated organics, mixed-polymer composites that cannot be cleanly separated, and the small fraction of hazardous categories that arrive mis-mixed despite our intake checks.',
+          "These residuals are routed to our treatment partners — TSDF landfill for inert / non-hazardous residuals, co-processing for combustible streams that meet the cement-kiln calorific spec, and the authorised incinerator for the small hazardous fraction. The disposal route for every kilogram is logged and reported back to the originating generator.",
         ],
+      },
+    ],
+  },
+  {
+    id: 'b04',
+    title: 'Why e-waste handling needs more than just a recycling bin',
+    date: 'Feb 18, 2026',
+    tag: 'E-waste',
+    read: 8,
+    excerpt: "E-waste makes up under 4% of waste by weight but contains 70% of the toxic heavy metals in the average industrial waste stream. Here is what a serious e-waste programme actually looks like.",
+    author: 'Anitha Kumaresan',
+    authorRole: 'Head of Compliance',
+    sections: [
+      {
+        heading: 'The hidden weight of e-waste',
+        paragraphs: [
+          'Most industrial customers are surprised to learn that the e-waste corner of their waste store contains the majority of the toxic load of the whole site. End-of-life laptops, monitors, printers, UPS batteries, control panels and field instruments together hold roughly 70% of the lead, mercury, cadmium and brominated flame retardants in an average industrial waste audit.',
+          "Tossing this material into a generic recycler — or worse, into the regular scrap pile — is how heavy metals leak into uncontrolled smelter feed and eventually back into the environment. India's E-Waste Management Rules (2022, amended 2026) require that e-waste flows through a CPCB-registered recycler with a proper material recovery and downstream-routing audit trail.",
+        ],
+      },
+      {
+        heading: 'What a serious programme looks like',
+        list: [
+          'Asset tagging at end-of-life so each device is tracked',
+          'Secure data destruction (NIST 800-88 wipe or physical shred) for storage media',
+          'Manifest pickup with a CPCB-registered recycler under EPR targets',
+          'Material recovery audit — components, metals, polymers separated and routed',
+          'Final disposal certificate with category-wise weight breakdown',
+          'Annual EPR fulfilment report mapping back to producer obligations',
+        ],
+      },
+      {
+        heading: 'Our programme structure',
+        paragraphs: [
+          "M R Greentech runs e-waste under our CPCB EPR registration. Pickup is scheduled monthly for ongoing programmes, on-call for one-off lots. Secure data destruction is included for storage media; for laptops we do a NIST 800-88 wipe followed by drive removal for physical shred at our facility.",
+          'Recovered materials — gold and copper from PCBs, aluminium from chassis, polymers from housings — go to authorised refiners. The annual EPR certificate consolidates the monthly weights and maps directly to the producer obligation under the central EPR portal.',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'b05',
+    title: 'Our 28-year journey: from one truck in 1998 to a 60,000 sqft recovery facility',
+    date: 'Jan 30, 2026',
+    tag: 'Anniversary',
+    read: 5,
+    excerpt: 'M R Greentech turns 28 this year. A short history of how Manickaraj started with one truck and one principle — and how that principle still runs every shift at Ambattur today.',
+    author: 'Manickaraj',
+    authorRole: 'Founder, M R Greentech',
+    sections: [
+      {
+        heading: 'How it started',
+        paragraphs: [
+          "M R Greentech began in 1998 with one truck, one driver, and a contract to clear non-hazardous industrial waste from a small auto-ancillary unit in Ambattur. I was the second driver. The principle from day one — and the only one I have ever had on the wall — was that waste leaving a customer's gate is the customer's reputation, not just their byproduct.",
+          'For the first six years, that meant we ran punctual, paperwork-correct collection. No fancy treatment, no recovery line, just disciplined pickup. We grew slowly — three trucks by 2002, eight by 2006 — and built a customer book of about 60 industrial units.',
+        ],
+      },
+      {
+        heading: 'The hazardous waste turn',
+        paragraphs: [
+          "The pivot came in 2008, when we filed for our first Hazardous Waste Authorisation with TNPCB. The category-specific rules under the 1989 framework had been replaced and the bar for credible handlers had moved up. We bought our first dedicated hazardous-waste vehicle, trained four drivers under the new rules, and signed our first 12-month hazardous-waste contract with a pharma manufacturer in Sriperumbudur.",
+          'From 2008 onward the business has been a two-stream operation — non-hazardous collection on the volume side and hazardous waste management on the value side. The Ambattur yard was acquired in 2011 to consolidate intake, and the recovery line was commissioned in 2009 to extract value back from the non-hazardous stream.',
+        ],
+      },
+      {
+        heading: 'Where we are at 28',
+        list: [
+          '240,000+ MT of waste handled cumulatively since 1998',
+          '420+ active industrial customer relationships across South India',
+          '60,000 sqft Ambattur facility with 14 vehicles in the fleet',
+          '92% materials diversion rate from landfill',
+          'CPCB, TNPCB and AERB authorised; ISO 14001 certified since 2018',
+          'Team of 24 across operations, compliance, and the recovery line',
+        ],
+      },
+      {
+        quote: {
+          text: "Waste leaving a customer's gate is the customer's reputation, not just their byproduct. That has not changed in 28 years, and it will not change in the next 28.",
+          author: 'Manickaraj, Founder',
+        },
       },
     ],
   },

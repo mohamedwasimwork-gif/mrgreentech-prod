@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Btn, Chip, DataRow, Ico, Placeholder, SectionHead } from '../ui';
-import { CASES, COMPANY, BLOG, SERVICES } from '../data';
+import { COMPANY, BLOG, SERVICES } from '../data';
 import { getField, useField } from '../content_store';
 import BlurInWords from '../motion/BlurInWords';
 import ScrollFadeUp from '../motion/ScrollFadeUp';
@@ -41,16 +41,16 @@ export function PageAbout({ onNav }: { onNav: (r: string) => void }) {
         <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 32px', display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: 80 }}>
           <ScrollFadeUp>
             <HoverImageZoom>
-              <RealImage src={IMAGES.aboutFounders} alt="Founders on yard · Ambattur" ratio="4/5" fallbackSeed="about-founders" label="Founders on yard · Ambattur"/>
+              <RealImage src={IMAGES.aboutFounders} alt="Recovery floor · Ambattur" ratio="4/5" fallbackSeed="about-founders" label="Recovery floor · Ambattur"/>
             </HoverImageZoom>
           </ScrollFadeUp>
           <ScrollFadeUp distance={100} delay={0.1}>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--c-muted)', marginBottom: 20 }}>Our story</div>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 'var(--display-weight)' as any, fontSize: 44, lineHeight: 1.05, letterSpacing: 'var(--display-tracking)', color: 'var(--c-ink)', margin: 0 }}>From one weighbridge to eleven countries.</h2>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 'var(--display-weight)' as any, fontSize: 44, lineHeight: 1.05, letterSpacing: 'var(--display-tracking)', color: 'var(--c-ink)', margin: 0 }}>From one truck in 1998 to a 60,000 sqft recovery facility.</h2>
             <div style={{ marginTop: 32, display: 'flex', flexDirection: 'column', gap: 24, fontSize: 16, lineHeight: 1.65, color: 'var(--c-ink2)' }}>
-              <p>Co-founders Mohan Rajan and Sridhar Venkat began MR Greentech as a domestic ferrous brokerage serving Coimbatore's forging cluster. By 2017 we'd registered IEC, filed our first Basel consignment, and shipped a 40ft HC container of shredded 211 to Genoa.</p>
-              <p>The non-ferrous desk opened in 2019. The Brazil sourcing arm followed in 2022, after a year of supplier audits across São Paulo state. In 2024 we commissioned the twin-ram baler at Ambattur — the single biggest capital investment in our history.</p>
-              <p>Today we employ 24 people across trading, yard operations, compliance, and documentation. Most of our growth has come from customers who first knew us as suppliers, or suppliers who first knew us as customers.</p>
+              <p>Founded in 1998 by Manickaraj, M R Greentech has been committed to creating a cleaner, safer, and more sustainable environment through professional waste management solutions. Over the years, the company has built a strong reputation in the field of waste collection, treatment, disposal activities, and materials recovery, serving industries and communities with responsibility and care.</p>
+              <p>M R Greentech is primarily engaged in the collection and management of both hazardous and non-hazardous waste. The company follows environmentally responsible practices to ensure that waste is handled, treated, and disposed of in compliance with safety and environmental standards. By focusing on sustainable waste management, M R Greentech contributes to reducing environmental impact while promoting recycling and resource recovery.</p>
+              <p>With decades of experience in the industry, the company continues to play an important role in supporting cleaner industrial operations and sustainable development. Through innovation, reliability, and environmental commitment, M R Greentech aims to lead the way toward a greener future for coming generations.</p>
             </div>
           </ScrollFadeUp>
         </div>
@@ -60,16 +60,16 @@ export function PageAbout({ onNav }: { onNav: (r: string) => void }) {
         <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 32px' }}>
           <div style={{ maxWidth: 820 }}>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--c-accent)', marginBottom: 20 }}>Timeline</div>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 'var(--display-weight)' as any, fontSize: 'clamp(32px, 4.2vw, 56px)', lineHeight: 1.04, letterSpacing: 'var(--display-tracking)', color: 'var(--c-darkInk)', margin: 0, textWrap: 'balance' as any }}>Twelve years on the floor.</h2>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 'var(--display-weight)' as any, fontSize: 'clamp(32px, 4.2vw, 56px)', lineHeight: 1.04, letterSpacing: 'var(--display-tracking)', color: 'var(--c-darkInk)', margin: 0, textWrap: 'balance' as any }}>Twenty-eight years on the floor.</h2>
           </div>
           <div style={{ marginTop: 56, display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 0, borderTop: '1px solid rgba(255,255,255,0.15)' }}>
             {[
-              ['2014', 'Founded · Ambattur yard'],
-              ['2017', 'First export · Genoa'],
-              ['2019', 'Non-ferrous desk'],
-              ['2022', 'Brazil sourcing arm'],
-              ['2024', 'Twin-ram baler online'],
-              ['2026', '192K MT cumulative'],
+              ['1998', 'Founded · one truck · Ambattur'],
+              ['2008', 'CPCB hazardous waste authorisation'],
+              ['2009', 'Materials recovery line commissioned'],
+              ['2011', '60,000 sqft Ambattur facility acquired'],
+              ['2018', 'ISO 14001 certified'],
+              ['2026', '240K+ MT handled cumulatively'],
             ].map(([y, l], i) => (
               <ScrollFadeUp key={i} delay={i * 0.05}>
                 <div style={{ padding: '32px 20px 32px 0', borderRight: i < 5 ? '1px solid rgba(255,255,255,0.15)' : 'none' }}>
@@ -87,9 +87,9 @@ export function PageAbout({ onNav }: { onNav: (r: string) => void }) {
           <SectionHead eyebrow="Principles" title="How we work."/>
           <div style={{ marginTop: 56, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 32 }}>
             {[
-              ['Grade honestly.', "We'd rather lose a deal than overstate a grade. It's the only way this business compounds."],
-              ['Document obsessively.', 'Every lot has a Basel notification, radiation cert, mill test and inspection report. We keep them for seven years.'],
-              ['Pay on time.', 'Suppliers are the business. Payment terms are non-negotiable; we honour them even when buyers delay.'],
+              ['Categorise honestly.', "We'd rather quarantine and re-quote a load than book it under the wrong category. Wrong categorisation is how disposal certificates get rejected — and the liability boomerangs back to the generator."],
+              ['Document obsessively.', 'Every consignment carries a six-copy manifest, a transport receipt, and a final disposal certificate. We retain the document pack digitally for the statutory seven years.'],
+              ['Pick up on time.', "Scheduled means scheduled. When a pharma site has a 6 a.m. waste pickup booked, the truck is at the gate at 5:55. Reliability compounds — it's the only currency that does."],
             ].map(([t, d], i) => (
               <ScrollFadeUp key={i} delay={i * 0.07}>
                 <div style={{ borderTop: '1px solid var(--c-ink)', paddingTop: 24 }}>
@@ -111,7 +111,7 @@ export function PageAbout({ onNav }: { onNav: (r: string) => void }) {
           <div style={{ marginTop: 64, display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: 64, alignItems: 'center' }}>
             <ScrollFadeUp>
               <HoverImageZoom>
-                <RealImage src={pravatar(11, 800)} alt="Portrait of Mohan Rajan, founder of MR Greentech" ratio="4/5" fallbackSeed="founder-portrait"/>
+                <RealImage src={pravatar(11, 800)} alt="Portrait of Manickaraj, founder of M R Greentech" ratio="4/5" fallbackSeed="founder-portrait"/>
               </HoverImageZoom>
             </ScrollFadeUp>
 
@@ -129,12 +129,12 @@ export function PageAbout({ onNav }: { onNav: (r: string) => void }) {
                   textWrap: 'pretty' as any,
                   maxWidth: 720,
                 }}>
-                  We started MR Greentech with one weighbridge and one principle: grade honestly, document obsessively, pay on time. Twelve years on, that hasn't changed. The yard got bigger, the corridors crossed three more continents, but the handshake at the gate is still the same — and that's what 1,300 shipments tell me actually compounds in this trade.
+                  I started M R Greentech in 1998 with one truck and one principle: waste leaving a customer's gate is the customer's reputation, not just their byproduct. Twenty-eight years later, the yard is bigger and the categories have multiplied, but that line is still the only one on the wall — and it is still what every shift gets measured against.
                 </p>
                 <div style={{ paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.18)', maxWidth: 720 }}>
-                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 'var(--display-weight)' as any, fontSize: 26, color: 'var(--c-darkInk)', letterSpacing: '-0.01em' }}>Mohan Rajan</div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--c-accent)', marginTop: 6 }}>Founder · MR Greentech</div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.06em', color: 'rgba(255,255,255,0.55)', marginTop: 4 }}>Trading floor, Ambattur · since 2014</div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 'var(--display-weight)' as any, fontSize: 26, color: 'var(--c-darkInk)', letterSpacing: '-0.01em' }}>Manickaraj</div>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--c-accent)', marginTop: 6 }}>Founder · M R Greentech</div>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.06em', color: 'rgba(255,255,255,0.55)', marginTop: 4 }}>Ambattur, Chennai · since 1998</div>
                 </div>
               </div>
             </ScrollFadeUp>
@@ -387,7 +387,7 @@ export function PageSustainability() {
         <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 32px' }}>
           <ScrollFadeUp>
             <HoverImageZoom>
-              <RealImage src={IMAGES.sustainHero} alt="Circular economy — recycled metal feedstock" ratio="21/9" fallbackSeed="sustain-hero" label="Circular economy · 192K MT recycled since 2014"/>
+              <RealImage src={IMAGES.sustainHero} alt="Circular economy — materials recovered from industrial waste" ratio="21/9" fallbackSeed="sustain-hero" label="Circular economy · 220K+ MT recovered since 1998"/>
             </HoverImageZoom>
           </ScrollFadeUp>
         </div>
@@ -397,9 +397,9 @@ export function PageSustainability() {
         <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 32px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0, border: '1px solid var(--c-line)' }}>
             {[
-              ['364,000', 'MT of CO₂ avoided', 'Based on 192K MT shipped × IEA scrap-vs-virgin factor'],
-              ['289,000', 'MT iron ore displaced', 'Direct ore-to-scrap substitution ratio 1.5×'],
-              ['93%', 'Yard material diverted', '7% residual goes to authorised hazardous handlers'],
+              ['440,000', 'MT of CO₂ avoided', 'Based on 220K MT diverted × IEA secondary-vs-virgin factor'],
+              ['330,000', 'MT virgin material displaced', 'Recovered metals, plastics and fibre back into supply chains'],
+              ['92%', 'Diversion from landfill', '8% residual routed to authorised treatment / co-processing'],
             ].map(([v, l, d], i) => (
               <ScrollFadeUp key={i} delay={i * 0.07}>
                 <div style={{ padding: '48px 40px', borderRight: i < 2 ? '1px solid var(--c-line)' : 'none' }}>
@@ -424,10 +424,10 @@ export function PageSustainability() {
             <SectionHead eyebrow="Commitments" title="Four things we publish every year."/>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 32 }}>
               {[
-                ['Basel Convention audit trail', 'Every consignment is notified and traceable. Annual summary published Q1.'],
-                ['Radiation testing on 100% of lots', 'Handheld GM monitors at ingress. Geiger certs filed with every BoL.'],
-                ['Worker safety programme', 'Zero reportable incidents in 2024 and 2025. OHSAS-aligned SOPs.'],
-                ['No electronic waste', "We don't trade WEEE. Mixed lots containing e-waste are rejected at ingress."],
+                ['Disposal certificate on 100% of hazardous consignments', 'Final certificate from TSDF / co-processor / incinerator within 7 working days. Digital vault keeps it for 7 years.'],
+                ['Annual Form 4 return on behalf of every client', 'Filed with TNPCB before the 30 June deadline. Client gets a stamped copy for their own audit file.'],
+                ['Radiation portal monitoring on every gate movement', 'AERB-calibrated portals at intake and dispatch. Zero contamination events in the last 36 months.'],
+                ['No mixed hazardous / non-hazardous loads', 'Source segregation at pickup. Mixed loads are rejected at the supplier gate, not at our gate after weighing.'],
               ].map(([t, d], i) => (
                 <div key={i} style={{ display: 'flex', gap: 24, padding: '24px 0', borderBottom: i < 3 ? '1px solid var(--c-line)' : 'none' }}>
                   <div style={{ color: 'var(--c-brand)', flexShrink: 0, paddingTop: 4 }}><Ico name="leaf" size={22}/></div>
@@ -446,9 +446,9 @@ export function PageSustainability() {
         <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 32px', display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 64, alignItems: 'center' }}>
           <ScrollFadeUp>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--c-muted)', marginBottom: 20 }}>Long-term impact</div>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 'var(--display-weight)' as any, fontSize: 'clamp(32px, 4vw, 52px)', lineHeight: 1.05, letterSpacing: 'var(--display-tracking)', color: 'var(--c-ink)', margin: 0 }}>Twelve years of keeping metal out of landfill — and out of new mines.</h2>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 'var(--display-weight)' as any, fontSize: 'clamp(32px, 4vw, 52px)', lineHeight: 1.05, letterSpacing: 'var(--display-tracking)', color: 'var(--c-ink)', margin: 0 }}>Twenty-eight years of keeping waste out of landfill — and resources back in supply chains.</h2>
             <p style={{ fontSize: 16, lineHeight: 1.65, color: 'var(--c-ink2)', marginTop: 24, maxWidth: 520 }}>
-              Every container we ship is a small bet that recycled feedstock can replace virgin ore. Multiplied across 192,400 MT, that adds up to roughly 364,000 MT of CO₂ never released, and 289,000 MT of iron ore left in the ground.
+              Every consignment that goes through our recovery line is a small bet that secondary materials can replace virgin extraction. Multiplied across 220,000+ MT diverted since 1998, that adds up to roughly 440,000 MT of CO₂ never released, and 330,000 MT of virgin material that did not need to be mined, refined or imported.
             </p>
           </ScrollFadeUp>
           <ScrollFadeUp delay={0.1}>
@@ -489,8 +489,8 @@ export function PageContact() {
               <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--c-muted)' }}>{COMPANY.lat}</span>
             </div>
             <div style={{ marginTop: 40 }}>
-              <ContactRow icon="phone" label="Trade desk" value={COMPANY.phone}/>
-              <ContactRow icon="phone" label="Yard operations" value={COMPANY.phone2}/>
+              <ContactRow icon="phone" label="Sales / quotes" value={COMPANY.phone}/>
+              <ContactRow icon="phone" label="Operations / pickups" value={COMPANY.phone2}/>
               <ContactRow icon="mail" label="General" value={COMPANY.email}/>
               <ContactRow icon="mail" label="Compliance" value="compliance@mrgreentech.in"/>
               <ContactRow icon="mail" label="Careers" value="join@mrgreentech.in"/>
@@ -722,7 +722,7 @@ export function PageBlogDetail({ id, onNav, onOpenQuote }: { id: string; onNav: 
 
       <section style={{ padding: '80px 0', borderBottom: '1px solid var(--c-line)' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 32px' }}>
-          <SectionHead eyebrow="Keep reading" title="More insights from the trade desk."/>
+          <SectionHead eyebrow="Keep reading" title="More from the recovery floor."/>
           <div style={{ marginTop: 48, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 32 }}>
             {related.map((p, i) => (
               <ScrollFadeUp key={p.id} delay={i * 0.05}>
