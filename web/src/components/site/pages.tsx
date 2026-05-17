@@ -111,7 +111,7 @@ export function PageAbout({ onNav }: { onNav: (r: string) => void }) {
           <div style={{ marginTop: 64, display: 'grid', gridTemplateColumns: '1fr 1.3fr', gap: 64, alignItems: 'center' }}>
             <ScrollFadeUp>
               <HoverImageZoom>
-                <RealImage src={pravatar(11, 800)} alt="Portrait of Manickaraj, founder of M R Greentech" ratio="4/5" fallbackSeed="founder-portrait"/>
+                <RealImage src="/founder.jpeg" alt="Portrait of Manickaraj, founder of M R Greentech" ratio="4/5" fallbackSeed="founder-portrait"/>
               </HoverImageZoom>
             </ScrollFadeUp>
 
