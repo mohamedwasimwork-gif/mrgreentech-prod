@@ -47,11 +47,10 @@ const NAV_ITEMS = [
   { id: 'contact', label: 'Contact' },
 ];
 
-export function TopNav({ current, onNav, onOpenQuote, onOpenAdmin }: {
+export function TopNav({ current, onNav, onOpenQuote }: {
   current: string;
   onNav: (r: string) => void;
   onOpenQuote: () => void;
-  onOpenAdmin: () => void;
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
   // Highlight Services for any services:* sub-route, Insights for blog:*, etc.
@@ -115,13 +114,6 @@ export function TopNav({ current, onNav, onOpenQuote, onOpenAdmin }: {
 
         {/* Desktop actions */}
         <div className="mrg-nav-actions">
-          <button onClick={onOpenAdmin} title="Open admin dashboard" className="mrg-admin-btn" style={{
-            background: 'transparent', border: '1px solid var(--c-line)', cursor: 'pointer',
-            padding: '8px 10px', borderRadius: 2, color: 'var(--c-ink2)',
-            fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.08em', textTransform: 'uppercase',
-          }}>
-            Admin
-          </button>
           <Btn variant="primary" size="sm" onClick={onOpenQuote}>
             Request quote <Ico name="arrow" size={14}/>
           </Btn>
@@ -162,9 +154,6 @@ export function TopNav({ current, onNav, onOpenQuote, onOpenAdmin }: {
             <div style={{ padding: 20, display: 'flex', flexDirection: 'column', gap: 10 }}>
               <Btn variant="primary" size="md" onClick={() => { onOpenQuote(); setMenuOpen(false); }}>
                 Request quote <Ico name="arrow" size={14}/>
-              </Btn>
-              <Btn variant="ghost" size="md" onClick={() => { onOpenAdmin(); setMenuOpen(false); }}>
-                Open admin
               </Btn>
             </div>
             <div style={{ padding: 20, borderTop: '1px solid var(--c-line)', fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--c-muted)', display: 'flex', flexDirection: 'column', gap: 6 }}>

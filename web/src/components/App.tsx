@@ -84,13 +84,9 @@ export default function App() {
     setRoute(r);
   };
 
-  const openAdmin = () => {
-    if (typeof window !== 'undefined') window.location.href = '/admin';
-  };
-
   return (
     <>
-      <TopNav current={route} onNav={onNav} onOpenQuote={() => setQuoteOpen(true)} onOpenAdmin={openAdmin}/>
+      <TopNav current={route} onNav={onNav} onOpenQuote={() => setQuoteOpen(true)}/>
 
       {route === 'home' && <PageHome onNav={onNav} onOpenQuote={() => setQuoteOpen(true)}/>}
       {route === 'about' && <PageAbout onNav={onNav}/>}

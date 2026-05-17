@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation';
 import { FormEvent, useEffect, useState } from 'react';
 import { useAuth } from '@/lib/auth';
 import { ApiError } from '@/lib/api';
-import { Logo } from '@/components/site/nav';
 import { Btn, Ico } from '@/components/ui';
 
 export default function AdminLoginPage() {
@@ -43,10 +42,8 @@ export default function AdminLoginPage() {
         + 'radial-gradient(50% 70% at 100% 100%, color-mix(in oklab, var(--c-brand2) 40%, transparent), transparent 70%)',
       display: 'flex', flexDirection: 'column',
     }}>
-      <header style={{ padding: '24px 32px', display: 'flex', alignItems: 'center', gap: 14 }}>
-        <Logo size={14} variant="dark"/>
-        <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.14em', padding: '4px 10px', background: 'var(--c-accent)', color: 'var(--c-accentInk)', borderRadius: 2 }}>ADMIN</span>
-        <a href="/" style={{ marginLeft: 'auto', fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)', textDecoration: 'none', border: '1px solid rgba(255,255,255,0.2)', padding: '8px 14px', borderRadius: 2 }}>← Back to site</a>
+      <header style={{ padding: '24px 32px', display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+        <a href="/" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)', textDecoration: 'none', border: '1px solid rgba(255,255,255,0.2)', padding: '8px 14px', borderRadius: 2 }}>← Back to site</a>
       </header>
 
       <main style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px' }}>
