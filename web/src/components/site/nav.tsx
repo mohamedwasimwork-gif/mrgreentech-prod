@@ -4,17 +4,33 @@ import React, { useEffect, useState } from 'react';
 import { Btn, Ico } from '../ui';
 import { COMPANY } from '../data';
 
+/**
+ * Brand logo. The image at /500x700.png contains the icon + "M R Greentech"
+ * wordmark together, so we render just the image and skip the separate text.
+ *
+ * The `size` prop drives the rendered height in pixels. The width auto-scales
+ * to maintain the source aspect (~1.4 : 1). Used at size=22 in TopNav and
+ * footer, size=20 in admin shell and admin login.
+ */
 export function Logo({ size = 22, variant = 'ink' }: { size?: number; variant?: 'ink' | 'dark' | 'brand' }) {
-  const color = variant === 'ink' ? 'var(--c-ink)' : variant === 'dark' ? 'var(--c-darkInk)' : 'var(--c-brand)';
+  // The image already carries its own colour. We scale height to ~2× the
+  // text-only size so the "M R Greentech" letters inside the image are
+  // legible at nav scale.
+  const renderedHeight = size * 1.9;
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-      <svg width={size * 1.4} height={size} viewBox="0 0 34 24" fill="none">
-        <path d="M3 19L8 5H26L31 19H3Z" stroke={color} strokeWidth="1.6"/>
-        <path d="M11 12h12M19 8l4 4-4 4" stroke={color} strokeWidth="1.6" strokeLinecap="square"/>
-      </svg>
-      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 'var(--display-weight)' as any, fontSize: size * 0.82, letterSpacing: '-0.01em', color }}>
-        MR<span style={{ color: 'var(--c-brand2)', marginLeft: 4 }}>Greentech</span>
-      </div>
+    <div
+      style={{ display: 'inline-flex', alignItems: 'center', lineHeight: 0 }}
+      data-variant={variant}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/500x700.png"
+        alt="M R Greentech"
+        width={Math.round(renderedHeight * 1.4)}
+        height={Math.round(renderedHeight)}
+        style={{ height: renderedHeight, width: 'auto', display: 'block' }}
+        decoding="async"
+      />
     </div>
   );
 }
