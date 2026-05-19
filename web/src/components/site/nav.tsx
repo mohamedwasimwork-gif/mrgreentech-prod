@@ -258,8 +258,7 @@ export function Footer({ onNav, onOpenQuote }: { onNav: (r: string) => void; onO
           <div>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', marginBottom: 18 }}>Head Office</div>
             <div style={{ fontSize: 14, lineHeight: 1.7 }}>
-              {COMPANY.address}<br/>
-              <span style={{ color: 'rgba(255,255,255,0.55)' }}>{COMPANY.lat}</span>
+              {COMPANY.address}
             </div>
             <div style={{ fontSize: 14, marginTop: 18, lineHeight: 1.7 }}>
               <a href={`tel:${COMPANY.phone}`} style={{ color: 'var(--c-accent)', textDecoration: 'none' }}>{COMPANY.phone}</a><br/>

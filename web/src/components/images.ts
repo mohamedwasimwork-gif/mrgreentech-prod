@@ -22,10 +22,9 @@ export const picsum = (seed: string, w = 1600, h = 1000) =>
 // Avatars for team portraits — Pravatar always returns a real face photo
 export const pravatar = (n: number, size = 480) => `https://i.pravatar.cc/${size}?img=${n}`;
 
-// Live Google Maps embed for the Ambattur facility — no API key needed.
-// Latitude/longitude pinned in COMPANY (data.ts).
+// Live Google Maps embed for the Goundarpalayam facility — no API key needed.
 export const factoryMapEmbed =
-  'https://www.google.com/maps?q=Ambattur+Industrial+Estate,+Chennai+600058&output=embed';
+  'https://www.google.com/maps?q=Maheswari+Nagar,+Goundarpalayam,+Thiruvallur,+Tamil+Nadu+600120&output=embed';
 
 export const IMAGES = {
   /* === HOME — yard aerial / hero === */

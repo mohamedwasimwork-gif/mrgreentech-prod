@@ -483,14 +483,12 @@ export function PageContact() {
         <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 32px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80 }}>
           <ScrollFadeUp>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--c-muted)', marginBottom: 20 }}>Head office</div>
-            <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 'var(--display-weight)' as any, fontSize: 32, margin: 0, color: 'var(--c-ink)', letterSpacing: '-0.02em' }}>Chennai, Tamil Nadu</h3>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 'var(--display-weight)' as any, fontSize: 32, margin: 0, color: 'var(--c-ink)', letterSpacing: '-0.02em' }}>Thiruvallur, Tamil Nadu</h3>
             <div style={{ marginTop: 24, fontSize: 16, lineHeight: 1.7, color: 'var(--c-ink2)' }}>
-              {COMPANY.address}<br/>
-              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13, color: 'var(--c-muted)' }}>{COMPANY.lat}</span>
+              {COMPANY.address}
             </div>
             <div style={{ marginTop: 40 }}>
               <ContactRow icon="phone" label="Sales / quotes" value={COMPANY.phone}/>
-              <ContactRow icon="phone" label="Operations / pickups" value={COMPANY.phone2}/>
               <ContactRow icon="mail" label="General" value={COMPANY.email}/>
               <ContactRow icon="mail" label="Compliance" value="compliance@mrgreentech.in"/>
               <ContactRow icon="mail" label="Careers" value="join@mrgreentech.in"/>
@@ -498,7 +496,7 @@ export function PageContact() {
           </ScrollFadeUp>
           <ScrollFadeUp delay={0.1}>
             <HoverImageZoom>
-              <RealImage src={IMAGES.contactYard} alt="MR Greentech yard · Ambattur, Chennai" ratio="4/3" fallbackSeed="contact-yard" label="Yard gate · Ambattur, Chennai"/>
+              <RealImage src={IMAGES.contactYard} alt="MR Greentech yard · Goundarpalayam, Thiruvallur" ratio="4/3" fallbackSeed="contact-yard" label="Yard gate · Goundarpalayam, Thiruvallur"/>
             </HoverImageZoom>
             <div style={{ marginTop: 24, padding: 24, border: '1px solid var(--c-line)' }}>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--c-muted)', marginBottom: 12 }}>Ports we operate from</div>
@@ -514,19 +512,19 @@ export function PageContact() {
         </div>
       </section>
 
-      {/* Live Google Map embed of the Ambattur facility */}
+      {/* Live Google Map embed of the Goundarpalayam facility */}
       <section style={{ padding: '72px 0', borderBottom: '1px solid var(--c-line)' }}>
         <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 32px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 16, marginBottom: 28 }}>
             <div>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--c-muted)', marginBottom: 12 }}>Find us</div>
               <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 'var(--display-weight)' as any, fontSize: 'clamp(28px, 3.4vw, 40px)', letterSpacing: 'var(--display-tracking)', color: 'var(--c-ink)', margin: 0, lineHeight: 1.1 }}>
-                Ambattur Industrial Estate, Chennai.
+                Goundarpalayam, Thiruvallur.
               </h2>
               <div style={{ fontSize: 14, color: 'var(--c-ink2)', marginTop: 10 }}>{COMPANY.address}</div>
             </div>
             <a
-              href="https://www.google.com/maps/dir/?api=1&destination=Ambattur+Industrial+Estate,+Chennai+600058"
+              href="https://www.google.com/maps/dir/?api=1&destination=Maheswari+Nagar,+Goundarpalayam,+Thiruvallur,+Tamil+Nadu+600120"
               target="_blank"
               rel="noopener noreferrer"
               style={{

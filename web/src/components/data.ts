@@ -5,14 +5,12 @@ export const COMPANY = {
   name: 'M R Greentech',
   established: 1998,
   founder: 'Manickaraj',
-  hq: 'Chennai, Tamil Nadu, India',
+  hq: 'Thiruvallur, Tamil Nadu, India',
   gst: '33AAHCM4821N1Z2',
   cpcb: 'HW/AUTH/TN/2024/4218',           // Hazardous Waste authorisation number
-  email: 'info@mrgreentech.in',
-  phone: '+91 44 4212 8800',
-  phone2: '+91 98400 21188',
-  address: 'Unit 4B, Ambattur Industrial Estate, Chennai 600058, Tamil Nadu, India',
-  lat: '13.0878°N, 80.1619°E',
+  email: 'sales@mrgreentech.in',
+  phone: '+91 94444 68691',
+  address: '#425, Surkaithatha Kalvai Street, Maheswari Nagar, Goundarpalayam, Thiruvallur, Tamil Nadu - 600120, India',
   yearsActive: 28,
   // Headline cumulative numbers — May 2026, kept consistent across every page.
   wasteHandled: '240,000+',                // MT collected, treated or recovered since 1998
