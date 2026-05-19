@@ -53,7 +53,7 @@ function HomeHero({ onNav, onOpenQuote }: { onNav: (r: string) => void; onOpenQu
             <p style={{ fontSize: 19, lineHeight: 1.55, color: 'var(--c-ink2)', marginTop: 36, maxWidth: 540, textWrap: 'pretty' as any }}>
               {getField('home', 'hero_body')}
             </p>
-            <div style={{ display: 'flex', gap: 12, marginTop: 40, flexWrap: 'wrap' }}>
+            <div className="mrg-hero-ctas" style={{ display: 'flex', gap: 12, marginTop: 40, flexWrap: 'wrap' }}>
               {getField('home', 'hero_cta_primary') && <Btn variant="primary" size="lg" onClick={onOpenQuote}>{getField('home', 'hero_cta_primary')} <Ico name="arrow" size={16}/></Btn>}
               {getField('home', 'hero_cta_secondary') && <Btn variant="ghost" size="lg" onClick={() => onNav('services')}>{getField('home', 'hero_cta_secondary')}</Btn>}
             </div>
@@ -140,7 +140,7 @@ function HomeIntro() {
           <p style={{ fontSize: 17, lineHeight: 1.65, color: 'var(--c-muted)', marginTop: 24, textWrap: 'pretty' as any }}>
             {getField('home', 'intro_p2')}
           </p>
-          <div style={{ marginTop: 36, display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0, borderTop: '1px solid var(--c-line)' }}>
+          <div className="mrg-intro-stats" style={{ marginTop: 36, display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0, borderTop: '1px solid var(--c-line)' }}>
             <IntroStat top={getField('home', 'intro_stat1_top')} label={getField('home', 'intro_stat1_label')}/>
             <IntroStat top={getField('home', 'intro_stat2_top')} label={getField('home', 'intro_stat2_label')}/>
             <IntroStat top={getField('home', 'intro_stat3_top')} label={getField('home', 'intro_stat3_label')}/>
@@ -432,8 +432,8 @@ function HomeFAQ() {
   })).filter(x => x.q);
   return (
     <section style={{ padding: '120px 0', borderBottom: '1px solid var(--c-line)', background: 'var(--c-surface2)' }}>
-      <div style={{ maxWidth: 1320, margin: '0 auto', padding: '0 32px', display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: 80 }}>
-        <div style={{ position: 'sticky', top: 120, alignSelf: 'start' }}>
+      <div className="mrg-faq-grid" style={{ maxWidth: 1320, margin: '0 auto', padding: '0 32px', display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: 80 }}>
+        <div className="mrg-faq-aside" style={{ position: 'sticky', top: 120, alignSelf: 'start' }}>
           <SectionHead eyebrow={getField('home', 'faq_eyebrow')} title={getField('home', 'faq_title')} />
           <div style={{ marginTop: 32 }}>
             <HoverImageZoom>
