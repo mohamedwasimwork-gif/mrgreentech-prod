@@ -80,7 +80,10 @@ export function TopNav({ current, onNav, onOpenQuote }: {
         padding: '7px 0',
       }}>
         <div className="mrg-container mrg-utility-row">
-          <span className="mrg-utility-id">◆ CPCB {COMPANY.cpcb} · GST {COMPANY.gst}</span>
+          <span className="mrg-utility-id">
+            <span className="mrg-hide-mobile">◆ CPCB {COMPANY.cpcb} · </span>
+            <span>GST {COMPANY.gst}</span>
+          </span>
           <span className="mrg-utility-meta">
             <span>{COMPANY.phone}</span>
             <span className="mrg-hide-mobile">{COMPANY.email}</span>
